@@ -2,17 +2,24 @@
 #define CLIENT_H
 #include <string>
 
-struct Client{
-    int idade;
-    std::string nome;
-    bool isActivate;
+struct Client
+{
+    int _id = 0;
+    int _idade = 0;
+    std::string _nome = "";
+    bool _isActivate = false;
 
-    void log();
-    
+
+    bool operator==(const Client& outro) const 
+    {
+        /* Define o critério de igualdade */
+        return (this->_id == outro._id);
+    }
+
 };
 
-void imprimirArray(int size, Client* array);
+std::ostream& operator<<(std::ostream& os, const Client& c);
 
-Client* novoTamanho(int size_new, int size_old, Client* array);
+Client adicionarClient(Client client, int _id);
 
 #endif // CLIENT_H

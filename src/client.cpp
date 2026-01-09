@@ -1,35 +1,31 @@
 #include "../include/client.h"
-#include <string>
+#include "../include//vetor.h"
 #include <iostream>
+#include <string>
 
-void Client::log(){
-    std::cout << "idade: " << idade 
-              << " Nome: " << nome 
-              << " Conta Ativa: " << (isActivate ? "Sim" : "Não") << std::endl;
+
+
+/* "Ensinado ao compilador" como enteder a operção de std::cout << Client::client */
+
+std::ostream& operator<<(std::ostream& os, const Client& client) 
+{
+    os << "Id: "<< client._id << "; Nome: " << client._nome << "; Idade: " << client._idade << "; Conta Ativa: " << client._isActivate;
+    return os;
 }
 
+/* Função Para Adicionar atributos ao cliente, ou seja suas informações */
 
-std::ostream& operator<<(std::ostream& os, const Client& client) {
-        os << "(Nome: " << client.nome << "; Idade: " << client.idade << ")";
-        return os;
-    }
+Client adicionarClient(Client client, int id)
+{
+    client._id = id;
 
+    std::cout << "digite o nome do usario: ";
+    std::cin >> client._nome;
 
-void imprimirArray(int size, Client* array){
-    for (int i=0; i < size; i++){
-        std::cout  << array[i] << std::endl;        
-    }
-}
+    std::cout << "digite a idade: ";
+    std::cin >> client._idade;
 
-Client* novoTamanho(int size_new, int size_old, Client* array){
-    Client* temp = new Client[size_new];
-    
-    for (int i=0; i < size_old; i++){
-        temp[i] = array[i];
-    }
-    for (int i=size_old; i <size_new; i++){
-        temp[i] = Client{0,"default",false};
-    }
+    client._isActivate = true;
 
-    return temp;
+    return client;
 }
