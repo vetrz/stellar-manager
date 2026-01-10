@@ -16,19 +16,32 @@ Vetor::~Vetor()
     delete[] _data;
 }
 
+/* retorna o valor do tamanho do Vetor */
+int Vetor::size()
+{
+    return _size;
+} 
+
+/* retorna o valor da capacidade do Vetor */
+int Vetor::capacity()
+{
+    return _capacity;
+}
+
 /* Implementação do Operador [] */
 Client& Vetor::operator[](int index) 
 {
     return _data[index];
 }
 
-/* Função pra mostrar os elemenetos do Vetor*/
+/* Mostra os elemenetos do Vetor */
 void Vetor::show()
 {
-    for (int i=0; i < this->_size; i++)
-        std::cout << "| " << this->_data[i] << " |" <<  std::endl;
+    for (int i=0; i < _size; i++)
+        std::cout << "| " << _data[i] << " |" <<  std::endl;
 }
 
+/* Adiciona elemenentos ao Vetor sequencialmente */
 void Vetor::push(Client client)
 {
     if (_size == _capacity){
@@ -41,6 +54,7 @@ void Vetor::push(Client client)
     }
 }
 
+/* Remover o ultimo item do Vetor */
 void Vetor::pop()
 {
     if (_size > 0 ){
@@ -48,9 +62,11 @@ void Vetor::pop()
     }
 }
 
+/* Remover o item com index desejado */
 void Vetor::remove(int index)
 {
     if (index < 0 || index >=_size){
+        std::cerr << "indice invalido" << std::endl;
         return;
     }
     
@@ -62,6 +78,7 @@ void Vetor::remove(int index)
 
 }
 
+/* Muda a capacidade do vetor alocando um novo espaço de memoria para _data*/
 void Vetor::_reserve(int capacity)
 {
     Client* temp = new Client[capacity];

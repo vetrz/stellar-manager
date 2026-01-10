@@ -13,6 +13,10 @@ struct Vetor
 
     ~Vetor();
 
+    int size();
+
+    int capacity();
+
     Client& operator[](int index);
 
     void show();
@@ -26,7 +30,5 @@ struct Vetor
     void _reserve(int capacity);
 
 };
-
-
 
 #endif // VETOR_H
