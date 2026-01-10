@@ -12,7 +12,7 @@ int main()
     std::cin >> quantidade;
 
     for (int i = 0; i < quantidade; i++){
-        vetor.push(addConstellation(c,i+1));
+        vetor.push(addConstellationFromInput(i+1));
     }
 
     vetor.show();

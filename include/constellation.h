@@ -22,6 +22,9 @@ struct Constellation
 
 std::ostream& operator<<(std::ostream& os, const Constellation& c);
 
-Constellation addConstellation(Constellation constellation, int _id);
+Constellation addConstellationFromInput(int id);
+
+Constellation addConstellation(int id, std::string nome, int anoDescobrimento, float distanciaTerra,
+                                 char hemisferio, std::string significado);
 
 #endif // CONSTELLATION_H

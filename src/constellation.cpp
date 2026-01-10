@@ -15,9 +15,11 @@ std::ostream& operator<<(std::ostream& os, const Constellation& constellation)
     return os;
 }
 
-/* Função Para Adicionar atributos ao Constellatione, ou seja suas informações */
-Constellation addConstellation(Constellation constellation, int id)
+/* Adicionar atributos a um objeto Constellatione de acordo com as entradas do Usuário */
+Constellation addConstellationFromInput(int id)
 {
+    Constellation constellation;
+
     constellation._id = id;
 
     std::cout << "digite o nome da constelação: ";
@@ -36,4 +38,20 @@ Constellation addConstellation(Constellation constellation, int id)
     std::getline(std::cin.ignore(), constellation._significado);
 
     return constellation;
+}
+
+
+Constellation addConstellation(int id, std::string nome, int anoDescobrimento, 
+                                 float distanciaTerra, char hemisferio, std::string significado)
+{
+    Constellation constellation;
+    constellation._id = id;
+    constellation._nome = nome;
+    constellation._anoDescobrimento = anoDescobrimento;
+    constellation._distanciaTerra = distanciaTerra;
+    constellation._hemisferio = hemisferio;
+    constellation._significado = significado;
+
+    return constellation;
+
 }
