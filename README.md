@@ -3,7 +3,7 @@
 Para Rodar o Projeto execute:
 
 ```
-terminal
+bash
 
 ./build.sh
 ```

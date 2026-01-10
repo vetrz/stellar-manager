@@ -1,13 +1,13 @@
 #ifndef VETOR_H
 #define VETOR_H
 
-#include "client.h"
+#include "constellation.h"
 
 struct Vetor
 {
     int _size;
     int _capacity;
-    Client* _data;
+    Constellation* _data;
     
     Vetor();
 
@@ -17,11 +17,11 @@ struct Vetor
 
     int capacity();
 
-    Client& operator[](int index);
+    Constellation& operator[](int index);
 
     void show();
 
-    void push(Client client);
+    void push(Constellation constellation);
 
     void pop();
 

@@ -1,4 +1,4 @@
-#include "../include/client.h"
+#include "../include/constellation.h"
 #include "../include//vetor.h"
 #include <iostream>
 
@@ -7,7 +7,7 @@ Vetor::Vetor()
 {
     _size = 0;
     _capacity = 5;
-    _data = new Client[_capacity];
+    _data = new Constellation[_capacity];
 }
 
 /* Implementação do Destrutor */
@@ -29,7 +29,7 @@ int Vetor::capacity()
 }
 
 /* Implementação do Operador [] */
-Client& Vetor::operator[](int index) 
+Constellation& Vetor::operator[](int index) 
 {
     return _data[index];
 }
@@ -42,14 +42,14 @@ void Vetor::show()
 }
 
 /* Adiciona elemenentos ao Vetor sequencialmente */
-void Vetor::push(Client client)
+void Vetor::push(Constellation constellation)
 {
     if (_size == _capacity){
         _reserve(_capacity + 5);
     }
 
     if (_size < _capacity){
-        _data[_size] = client;
+        _data[_size] = constellation;
         _size +=1;
     }
 }
@@ -81,7 +81,7 @@ void Vetor::remove(int index)
 /* Muda a capacidade do vetor alocando um novo espaço de memoria para _data*/
 void Vetor::_reserve(int capacity)
 {
-    Client* temp = new Client[capacity];
+    Constellation* temp = new Constellation[capacity];
 
     if(capacity < _size){
         _size = capacity;

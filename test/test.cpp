@@ -1,11 +1,11 @@
-#include "../include/client.h"
+#include "../include/constellation.h"
 #include "../include//vetor.h"
 #include <iostream>
 
 
 int main(){
     Vetor vetor;
-    Client c;
+    Constellation c;
     int quantidade;
 
     std::cout << "Digite a Quantidade de usuarios que deseja inserir: "; 
@@ -14,7 +14,7 @@ int main(){
     std::cout << "endereço" << &c << std::endl;
 
     for (int i = 0; i < quantidade; i++){
-        vetor.push(adicionarClient(c,i+1));
+        vetor.push(addConstellation(c,i+1));
         std::cout << "size: " << vetor.size() << "  capacity: "<< vetor.capacity() << std::endl;
         std::cout << "endereço" << &vetor[i] << std::endl;
     }
