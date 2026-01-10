@@ -21,6 +21,8 @@ struct Vetor
 
     void pop();
 
+    void remove(int index);
+
     void _reserve(int capacity);
 
 };

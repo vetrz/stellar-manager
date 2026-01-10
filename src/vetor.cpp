@@ -48,6 +48,20 @@ void Vetor::pop()
     }
 }
 
+void Vetor::remove(int index)
+{
+    if (index < 0 || index >=_size){
+        return;
+    }
+    
+    for (int i = index; i < _size - 1; i++){
+        _data[i] = _data[i+1];
+    }
+
+    _size -=1;
+
+}
+
 void Vetor::_reserve(int capacity)
 {
     Client* temp = new Client[capacity];

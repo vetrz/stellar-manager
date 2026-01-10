@@ -13,7 +13,16 @@ int main(){
 
     for (int i = 0; i < quantidade; i++){
         vetor.push(adicionarClient(c,i+1));
+        std::cout << "size: " << vetor._size << "  capacity: "<< vetor._capacity << std::endl;
     }
+
+    vetor.show();
+
+    std::cout << std::endl;
+
+    vetor.remove(2);
+
+    std::cout << std::endl;
 
     vetor.show();
 }

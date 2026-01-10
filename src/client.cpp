@@ -3,10 +3,7 @@
 #include <iostream>
 #include <string>
 
-
-
 /* "Ensinado ao compilador" como enteder a operção de std::cout << Client::client */
-
 std::ostream& operator<<(std::ostream& os, const Client& client) 
 {
     os << "Id: "<< client._id << "; Nome: " << client._nome << "; Idade: " << client._idade << "; Conta Ativa: " << client._isActivate;
@@ -14,7 +11,6 @@ std::ostream& operator<<(std::ostream& os, const Client& client)
 }
 
 /* Função Para Adicionar atributos ao cliente, ou seja suas informações */
-
 Client adicionarClient(Client client, int id)
 {
     client._id = id;
