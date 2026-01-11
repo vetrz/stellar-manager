@@ -1,5 +1,4 @@
 #include "../include/constellation.h"
-#include "../include//vetor.h"
 #include <iostream>
 #include <string>
 
@@ -15,7 +14,7 @@ std::ostream& operator<<(std::ostream& os, const Constellation& constellation)
     return os;
 }
 
-/* Adicionar atributos a um objeto Constellatione de acordo com as entradas do Usuário */
+/* Adicionar atributos a um objeto Constellatione de acordo com as entradas do Usuário e retorna um novo Constellation */
 Constellation addConstellationFromInput(int id)
 {
     Constellation constellation;
@@ -40,7 +39,7 @@ Constellation addConstellationFromInput(int id)
     return constellation;
 }
 
-
+/* Adicionar atributos a um objeto Constellatione e retorna um novo Constellation */
 Constellation addConstellation(int id, std::string nome, int anoDescobrimento, 
                                  float distanciaTerra, char hemisferio, std::string significado)
 {

@@ -1,3 +1,4 @@
+#include "../include/constellationFilters.h"
 #include "../include/constellation.h"
 #include "../include//vetor.h"
 #include <iostream>
@@ -20,7 +21,7 @@ int main(){
 
     std::cout << std::endl;
 
-    vetor.remove(2);
+    vetor.filter(isNorth);
 
     std::cout << std::endl;
 

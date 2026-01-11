@@ -1,16 +1,16 @@
 #ifndef CONSTELLATION_H
 #define CONSTELLATION_H
+
 #include <string>
 
 struct Constellation
 {
-    int _id = 0;
-    std::string _nome = "";
-    int _anoDescobrimento = 0;
-    float _distanciaTerra = 0.0;
-    char _hemisferio = 'd';
-    std::string _significado = "";
-
+    int _id;
+    std::string _nome;
+    int _anoDescobrimento;
+    float _distanciaTerra;
+    char _hemisferio;
+    std::string _significado;
 
     bool operator==(const Constellation& outro) const 
     {

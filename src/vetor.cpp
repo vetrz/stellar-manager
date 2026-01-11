@@ -6,7 +6,7 @@
 Vetor::Vetor() 
 {
     _size = 0;
-    _capacity = 5;
+    _capacity = 45;
     _data = new Constellation[_capacity];
 }
 
@@ -76,6 +76,16 @@ void Vetor::remove(int index)
 
     _size -=1;
 
+}
+
+/* Filtra e mostra os itens conforme a regra */
+void Vetor::filter(bool (*rule)(Constellation))
+{
+    for (int i = 0; i < _size; i++){
+        if (rule(_data[i])){
+            std::cout << "| "<< _data[i] << " |" << std::endl; 
+        }
+    }
 }
 
 /* Muda a capacidade do vetor alocando um novo espaço de memoria para _data*/
