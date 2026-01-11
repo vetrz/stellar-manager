@@ -27,6 +27,8 @@ struct Vetor
 
     void remove(int index);
 
+    void filter(bool (*rule)(Constellation));
+
     void _reserve(int capacity);
 
 };
