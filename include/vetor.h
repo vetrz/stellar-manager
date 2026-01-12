@@ -11,6 +11,8 @@ struct Vetor
     
     Vetor();
 
+    Vetor(const Vetor& other); 
+
     ~Vetor();
 
     int size();
@@ -27,10 +29,9 @@ struct Vetor
 
     void remove(int index);
 
-    void filter(bool (*rule)(Constellation));
-
     void _reserve(int capacity);
 
+    Vetor filter(bool (*rule)(Constellation));
 };
 
 #endif // VETOR_H
