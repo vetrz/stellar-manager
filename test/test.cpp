@@ -12,7 +12,7 @@ int main(){
     std::cin >> quantidade;
 
     for (int i = 0; i < quantidade; i++){
-        vetor.push(addConstellationFromInput(i+1));
+        vetor.push(addConstellationFromInput(vetor.size()+1));
         std::cout << "size: " << vetor.size() << "  capacity: "<< vetor.capacity() << std::endl;
         std::cout << "endereço" << &vetor[i] << std::endl;
     }
@@ -21,9 +21,15 @@ int main(){
 
     std::cout << std::endl;
 
-    vetor.filter(isNorth);
+    Vetor filtrado = vetor.filter(isNorth);
+
+    filtrado.show();
+
+    std::cout << "size: " << filtrado.size() << "  capacity: "<< filtrado.capacity() << std::endl;
+
+    filtrado.push(addConstellationFromInput(vetor.size()+1));
 
     std::cout << std::endl;
 
-    vetor.show();
+    filtrado.show();
 }
