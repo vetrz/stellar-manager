@@ -40,7 +40,7 @@ Constellation addConstellationFromInput(int id)
 }
 
 /* Adicionar atributos a um objeto Constellatione e retorna um novo Constellation */
-Constellation addConstellation(int id, std::string nome, int anoDescobrimento, 
+Constellation addConstellation(int id, std::string nome, u_short anoDescobrimento, 
                                  float distanciaTerra, char hemisferio, std::string significado)
 {
     Constellation constellation;
