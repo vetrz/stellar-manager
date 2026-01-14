@@ -1,4 +1,4 @@
-# Projeto Disciplina Programação I
+# Stellar Maneger
 
 Para Rodar o Projeto execute:
 
