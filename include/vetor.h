@@ -15,6 +15,8 @@ struct Vetor
 
     ~Vetor();
 
+    Vetor& operator=(const Vetor& other);
+
     int size();
 
     int capacity();

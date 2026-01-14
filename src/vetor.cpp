@@ -10,7 +10,7 @@ Vetor::Vetor()
     _data = new Constellation[_capacity];
 }
 
-// Construtor de Cópia
+/* Construtor de Cópia */ 
 Vetor::Vetor(const Vetor& other) 
 {    
     _size = other._size;
@@ -26,6 +26,21 @@ Vetor::Vetor(const Vetor& other)
 Vetor::~Vetor() 
 {
     delete[] _data;
+}
+
+Vetor& Vetor::operator=(const Vetor& other) {
+    if (this != &other) {
+        delete[] _data;
+
+        _size = other._size;
+        _capacity = other._capacity;
+        _data = new Constellation[_capacity];
+
+        for (int i = 0; i < _size; i++) {
+            _data[i] = other._data[i];
+        }
+    }
+    return *this;
 }
 
 /* retorna o valor do tamanho do Vetor */
