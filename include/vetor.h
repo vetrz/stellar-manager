@@ -5,35 +5,31 @@
 
 struct Vetor
 {
-    int _size;
-    int _capacity;
-    Constellation* _data;
+    private:
+        int _size;
+        int _capacity;
+        Constellation* _data;
+
+         void _reserve(int capacity);
     
-    Vetor();
+    public:
+        Vetor();
+        Vetor(const Vetor& other); 
+        ~Vetor();
 
-    Vetor(const Vetor& other); 
+        Vetor& operator=(const Vetor& other);
 
-    ~Vetor();
+        int size() const;
+        int capacity() const;
 
-    Vetor& operator=(const Vetor& other);
+        Constellation& operator[](int index);
 
-    int size();
+        void show();
+        void push(Constellation constellation);
+        void pop();
+        void remove(int index);
 
-    int capacity();
-
-    Constellation& operator[](int index);
-
-    void show();
-
-    void push(Constellation constellation);
-
-    void pop();
-
-    void remove(int index);
-
-    void _reserve(int capacity);
-
-    Vetor filter(bool (*rule)(Constellation));
+        Vetor filter(bool (*rule)(Constellation));
 };
 
 #endif // VETOR_H

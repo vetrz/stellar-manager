@@ -44,13 +44,13 @@ Vetor& Vetor::operator=(const Vetor& other) {
 }
 
 /* retorna o valor do tamanho do Vetor */
-int Vetor::size()
+int Vetor::size() const
 {
     return _size;
 } 
 
 /* retorna o valor da capacidade do Vetor */
-int Vetor::capacity()
+int Vetor::capacity() const
 {
     return _capacity;
 }
