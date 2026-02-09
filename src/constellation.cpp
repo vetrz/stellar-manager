@@ -5,11 +5,11 @@
 /* "Ensinado ao compilador" como enteder a operção de std::cout << Constellation::Constellation */
 std::ostream& operator<<(std::ostream& os, const Constellation& constellation) 
 {
-    os << "Id: "<< constellation._id << "; Nome: " << constellation._nome << 
-    "; Ano de Descobrimento: " << constellation._anoDescobrimento << 
-    "; Distancia da Terra: " << constellation._distanciaTerra <<
-    "; Hemisferio: " << constellation._hemisferio <<
-    "; Significado mitologico: " << constellation._significado;
+    os << "Id: "<< constellation.id << "; Nome: " << constellation.nome << 
+    "; Ano de Descobrimento: " << constellation.anoDescobrimento << 
+    "; Distancia da Terra: " << constellation.distanciaTerra <<
+    "; Hemisferio: " << constellation.hemisferio <<
+    "; Significado mitologico: " << constellation.significado;
 
     return os;
 }
@@ -19,22 +19,22 @@ Constellation addConstellationFromInput(int id)
 {
     Constellation constellation;
 
-    constellation._id = id;
+    constellation.id = id;
 
     std::cout << "digite o nome da constelação: ";
-    std::getline(std::cin.ignore(), constellation._nome);
+    std::getline(std::cin.ignore(), constellation.nome);
 
     std::cout << "digite o ano de descobrimento: ";
-    std::cin >> constellation._anoDescobrimento;
+    std::cin >> constellation.anoDescobrimento;
 
     std::cout << "digite a distancia da Terra: ";
-    std::cin >> constellation._distanciaTerra;
+    std::cin >> constellation.distanciaTerra;
 
     std::cout << "digite o hemisferio: ";
-    std::cin >> constellation._hemisferio;
+    std::cin >> constellation.hemisferio;
 
     std::cout << "digite o significado mitologico: ";
-    std::getline(std::cin.ignore(), constellation._significado);
+    std::getline(std::cin.ignore(), constellation.significado);
 
     return constellation;
 }
@@ -44,12 +44,12 @@ Constellation addConstellation(int id, std::string nome, u_short anoDescobriment
                                  float distanciaTerra, char hemisferio, std::string significado)
 {
     Constellation constellation;
-    constellation._id = id;
-    constellation._nome = nome;
-    constellation._anoDescobrimento = anoDescobrimento;
-    constellation._distanciaTerra = distanciaTerra;
-    constellation._hemisferio = hemisferio;
-    constellation._significado = significado;
+    constellation.id = id;
+    constellation.nome = nome;
+    constellation.anoDescobrimento = anoDescobrimento;
+    constellation.distanciaTerra = distanciaTerra;
+    constellation.hemisferio = hemisferio;
+    constellation.significado = significado;
 
     return constellation;
 

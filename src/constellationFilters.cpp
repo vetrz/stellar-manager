@@ -6,20 +6,20 @@
 /* Filtros por Hemisferio */
 bool isNorth(Constellation constellation)
 {
-    return constellation._hemisferio == 'N';
+    return constellation.hemisferio == 'N';
 }
 
 bool isWest(Constellation constellation)
 {
-    return constellation._hemisferio == 'O';
+    return constellation.hemisferio == 'O';
 }
 
 bool isEast(Constellation constellation)
 {
-    return constellation._hemisferio == 'L';
+    return constellation.hemisferio == 'L';
 }
 
 bool isSouth(Constellation constellation)
 {
-    return constellation._hemisferio == 'S';
+    return constellation.hemisferio == 'S';
 }
