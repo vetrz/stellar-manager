@@ -1,5 +1,5 @@
-#include "../include/constellation.h"
-#include "../include//vetor.h"
+#include "models/constellation.h"
+#include "core/vetor.h"
 #include <iostream>
 
 /* Implementação do Construtor */

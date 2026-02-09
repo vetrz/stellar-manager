@@ -1,7 +1,6 @@
-#include "../include/constellationFilters.h"
-#include "../include/constellation.h"
+#include "services/constellationFilters.h"
+#include "models/constellation.h"
 #include <string>
-
 
 /* Filtros por Hemisferio */
 bool isNorth(Constellation constellation)

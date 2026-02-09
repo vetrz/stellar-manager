@@ -1,0 +1,26 @@
+#ifndef INTERFACE_H
+#define INTERFACE_H
+
+#include <ftxui/component/component.hpp>
+#include <ftxui/component/screen_interactive.hpp>
+#include <ftxui/dom/elements.hpp>
+#include <ftxui/dom/table.hpp>
+#include <vector>
+#include <string>
+#include "models/constellation.h"
+#include "core/vetor.h"
+
+
+using namespace ftxui;
+
+Element RenderizarTabela(Vetor& vetor);
+
+Element DesenharInterface(
+    int tela_ativa, 
+    Component& menu, 
+    Component& input_nome, 
+    Component& input_ano, 
+    Vetor& df, 
+    ScreenInteractive& screen);
+
+#endif // INTERFACE_H
