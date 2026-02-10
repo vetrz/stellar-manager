@@ -10,17 +10,18 @@
 #include "models/constellation.h"
 #include "core/vetor.h"
 
-
 using namespace ftxui;
 
-Element RenderizarTabela(Vetor& vetor);
+namespace StellarUi
+{
+    Element _RenderizarTabela(Vetor& vetor);
 
-Element DesenharInterface(
-    int tela_ativa, 
-    Component& menu, 
-    Component& input_nome, 
-    Component& input_ano, 
-    Vetor& df, 
-    ScreenInteractive& screen);
+    Element DesenharInterface(
+        int tela_ativa, 
+        Component& menu, 
+        std::vector<ftxui::Component> inputs,
+        Vetor& df, 
+        ScreenInteractive& screen);
+}
 
 #endif // INTERFACE_H

@@ -4,9 +4,6 @@
 #include "models/constellation.h"
 #include "core/vetor.h"
 
-using namespace ftxui;
-
-
 int main() 
 {
     Vetor df;
@@ -33,8 +30,7 @@ int main()
     df.push(c9);
     df.push(c10);
 
-
-    auto screen = ScreenInteractive::TerminalOutput();
+    auto screen = ftxui::ScreenInteractive::TerminalOutput();
 
     int tela_ativa = 0;
     std::vector<std::string> opcoes_menu = {
@@ -45,21 +41,29 @@ int main()
         "Sair"
     };
 
-    auto menu = Menu(&opcoes_menu, &tela_ativa);
+    auto menu = ftxui::Menu(&opcoes_menu, &tela_ativa);
 
-    std::string novo_nome, novo_ano;
-    Component input_nome = Input(&novo_nome, "Nome da constelação");
-    Component input_ano = Input(&novo_ano, "Ano de descobrimento");
+    std::string novo_nome, novo_ano, nova_distancia, novo_hemisferio, novo_significado;
 
-    auto main_renderer = Renderer(Container::Vertical({
+    std::vector<ftxui::Component> inputs = {
+        (ftxui::Input(&novo_nome, "Nome da constelação")), 
+        (ftxui::Input(&novo_ano, "Ano de descobrimento")),
+        (ftxui::Input(&nova_distancia, "Distância da Terra")),
+        (ftxui::Input(&novo_hemisferio, "Hemisferio localizado")),
+        (ftxui::Input(&novo_significado, "Significado")),
+    };
+
+    auto main_renderer = ftxui::Renderer(ftxui::Container::Vertical({
         menu, 
-        input_nome, 
-        input_ano}), [&] {
-        return DesenharInterface(
+        inputs[0], 
+        inputs[1],
+        inputs[2],
+        inputs[3],
+        inputs[4]}), [&] {
+        return StellarUi::DesenharInterface(
             tela_ativa, 
-            menu, 
-            input_nome, 
-            input_ano, 
+            menu,
+            inputs,
             df, 
             screen);
     });
