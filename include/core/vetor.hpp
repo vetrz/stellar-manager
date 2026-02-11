@@ -1,7 +1,7 @@
 #ifndef VETOR_H
 #define VETOR_H
 
-#include "models/constellation.h"
+#include "models/constellation.hpp"
 
 struct Vetor
 {

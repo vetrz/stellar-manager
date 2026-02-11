@@ -7,8 +7,8 @@
 #include <ftxui/dom/table.hpp>
 #include <vector>
 #include <string>
-#include "models/constellation.h"
-#include "core/vetor.h"
+#include "models/constellation.hpp"
+#include "core/vetor.hpp"
 
 using namespace ftxui;
 

@@ -1,8 +1,8 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
-#include "ui/interface.h"
-#include "models/constellation.h"
-#include "core/vetor.h"
+#include "ui/interface.hpp"
+#include "models/constellation.hpp"
+#include "core/vetor.hpp"
 
 int main() 
 {

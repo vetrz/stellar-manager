@@ -4,9 +4,9 @@
 #include <ftxui/dom/table.hpp>
 #include <vector>
 #include <string>
-#include "models/constellation.h"
-#include "core/vetor.h"
-#include "ui/interface.h"
+#include "models/constellation.hpp"
+#include "core/vetor.hpp"
+#include "ui/interface.hpp"
 
 using namespace ftxui;
 

@@ -1,4 +1,4 @@
-#include "models/constellation.h"
+#include "models/constellation.hpp"
 #include <iostream>
 #include <string>
 

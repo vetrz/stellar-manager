@@ -1,5 +1,5 @@
-#include "services/constellationFilters.h"
-#include "models/constellation.h"
+#include "services/constellationFilters.hpp"
+#include "models/constellation.hpp"
 #include <string>
 
 /* Filtros por Hemisferio */

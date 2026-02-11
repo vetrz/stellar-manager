@@ -1,5 +1,5 @@
-#include "infra/dataLoader.h"
-#include "core/vetor.h"
+#include "infra/dataLoader.hpp"
+#include "core/vetor.hpp"
 #include <string>
 #include <fstream>
 #include <iostream>

@@ -1,7 +1,7 @@
 #ifndef CONSTELLATIONFILTERS_H
 #define CONSTELLATIONFILTERS_H
 
-#include "models/constellation.h"
+#include "models/constellation.hpp"
 
 bool isNorth(Constellation constellation);
 
