@@ -19,14 +19,9 @@ FetchContent_Declare(ftxui
 
 FetchContent_MakeAvailable(ftxui)
 
-add_executable(stellar 
-  src/main.cpp
-  src/core/vetor.cpp
-  src/infra/dataLoader.cpp
-  src/models/constellation.cpp
-  src/services/constellationFilters.cpp
-  src/ui/interface.cpp
-)
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+
+add_executable(stellar ${SOURCES})
 
 target_include_directories(stellar
   PRIVATE
