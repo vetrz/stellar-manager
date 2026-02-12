@@ -1,5 +1,5 @@
-#ifndef INTERFACE_H
-#define INTERFACE_H
+#ifndef INTERFACE_HPP
+#define INTERFACE_HPP
 
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
@@ -14,14 +14,14 @@ using namespace ftxui;
 
 namespace StellarUi
 {
-    Element _RenderizarTabela(Vetor& vetor);
+    Element _RenderTable(Vetor& vetor);
 
-    Element DesenharInterface(
-        int tela_ativa, 
+    Element DesignInterface(
+        int active_screen, 
         Component& menu, 
-        std::vector<ftxui::Component> inputs,
+        std::vector<ftxui::Component>& inputs,
         Vetor& df, 
         ScreenInteractive& screen);
 }
 
-#endif // INTERFACE_H
+#endif // INTERFACE_HPP

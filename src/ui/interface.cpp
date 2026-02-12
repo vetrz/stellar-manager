@@ -12,7 +12,7 @@ using namespace ftxui;
 
 namespace StellarUi
 {
-    Element _RenderizarTabela(Vetor& vetor)
+    Element _RenderTable(Vetor& vetor)
     {
         std::vector<std::vector<std::string>> matrix;
         matrix.push_back({
@@ -45,7 +45,7 @@ namespace StellarUi
         return t.Render();
     }
 
-    Element DesenharInterface(
+    Element DesignInterface(
         int active_screen, 
         Component& menu, 
         std::vector<ftxui::Component>& inputs,
@@ -63,7 +63,7 @@ namespace StellarUi
                     text("* .   .  * * .   .  * * .   .  *") | color(Color::YellowLight) | hcenter,
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
                     separator(),
-                    _RenderizarTabela(df) | frame | flex
+                    _RenderTable(df) | frame | flex
                 });
                 break;
             case 1:
