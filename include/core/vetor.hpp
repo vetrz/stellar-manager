@@ -1,5 +1,5 @@
-#ifndef VETOR_H
-#define VETOR_H
+#ifndef VETOR_HPP
+#define VETOR_HPP
 
 #include "models/constellation.hpp"
 
@@ -32,4 +32,4 @@ struct Vetor
         Vetor filter(bool (*rule)(Constellation));
 };
 
-#endif // VETOR_H
+#endif // VETOR_HPP

@@ -1,5 +1,5 @@
-#ifndef CONSTELLATION_H
-#define CONSTELLATION_H
+#ifndef CONSTELLATION_HPP
+#define CONSTELLATION_HPP
 
 #include <string>
 
@@ -27,4 +27,4 @@ Constellation addConstellationFromInput(int id);
 Constellation addConstellation(int id, std::string nome, u_short anoDescobrimento, float distanciaTerra,
                                  char hemisferio, std::string significado);
 
-#endif // CONSTELLATION_H
+#endif // CONSTELLATION_HPP

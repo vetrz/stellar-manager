@@ -1,5 +1,5 @@
-#ifndef CONSTELLATIONFILTERS_H
-#define CONSTELLATIONFILTERS_H
+#ifndef CONSTELLATIONFILTERS_HPP
+#define CONSTELLATIONFILTERS_HPP
 
 #include "models/constellation.hpp"
 
@@ -12,4 +12,4 @@ bool isEast(Constellation constellation);
 bool isSouth(Constellation constellation);
 
 
-#endif // CONSTELLATIONFILTERS_H
+#endif // CONSTELLATIONFILTERS_HPP

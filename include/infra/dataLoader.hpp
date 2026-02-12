@@ -1,5 +1,5 @@
-#ifndef DATALOADER_H
-#define DATALOADER_H
+#ifndef DATALOADER_HPP
+#define DATALOADER_HPP
 
 
 
