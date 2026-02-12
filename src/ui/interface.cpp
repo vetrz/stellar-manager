@@ -55,7 +55,7 @@ namespace StellarUi
         
         Element dynamic_content;
         switch (active_screen) {
-            case 0: 
+            case 0: {
                 dynamic_content = vbox({
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
                     text("* .   .  * * .   .  * * .   .  *") | color(Color::YellowLight) | hcenter,
@@ -66,7 +66,8 @@ namespace StellarUi
                     _RenderTable(df) | frame | flex
                 });
                 break;
-            case 1:
+            }
+            case 1: {
                 dynamic_content = vbox({
                     text(" Adicionar Nova Constelação ") | bold,
                     separator(),
@@ -78,10 +79,21 @@ namespace StellarUi
                     text("(Pressione ENTER para salvar)") | dim
                 });
                 break;
-            case 4: 
+            }
+            case 3:{
+                dynamic_content = vbox({
+                    text(" Remover constelação ") | bold | hcenter | color(Color::Red),
+                    separator(),
+                    hbox(text(" Id Para Remover: "), inputs[5]->Render()),
+                    text("(Pressione ENTER para salvar)") | dim
+                });
+                break;
+            }
+            case 4: {
                 screen.ExitLoopClosure()();
                 dynamic_content = text("Saindo...");
                 break;
+            }
             default:
                 dynamic_content = text("Em desenvolvimento...") | center;
                 break;
