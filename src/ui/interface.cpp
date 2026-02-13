@@ -14,35 +14,37 @@ namespace StellarUi
 {
     Element _RenderTable(Vetor& vetor)
     {
-        std::vector<std::vector<std::string>> matrix;
-        matrix.push_back({
-            "    ID    ",
-            "    Nome    ",
-            "    Ano de descobrimento    ",
-            "    Distancia da Terra    ",
-            "    Hemisferio    ",
-            "    Significado Mitologico    "
-            });
-
+        std::vector<Element> rows;
+        
+        rows.push_back(
+            hbox({
+                text(" ID ") | center | size(WIDTH, EQUAL, 5), separator(),
+                text(" Nome ") | center | size(WIDTH, EQUAL, 18), separator(),
+                text(" Ano ") | center | size(WIDTH, EQUAL, 6), separator(),
+                text(" Distância ") | center | size(WIDTH, EQUAL, 12), separator(),
+                text(" Hemisfério ") | center | size(WIDTH, EQUAL, 12), separator(),
+                text(" Significado Mitológico ") | center | flex 
+            }) | bold | color(Color::Cyan)
+        );
+        
+        rows.push_back(separator());
+        
         for (int i = 0; i < vetor.size(); i++){
             Constellation& c = vetor[i];
             
-            matrix.push_back({
-                std::to_string(c.id),
-                c.nome,
-                std::to_string(c.anoDescobrimento),
-                std::to_string(c.distanciaTerra),
-                std::string(1, c.hemisferio),
-                c.significado
-            });
+            rows.push_back(
+                hbox({
+                    text(std::to_string(c.id)) | center | size(WIDTH, EQUAL, 5), separator(),
+                    text(c.nome) | center | size(WIDTH, EQUAL, 18), separator(),
+                    text(std::to_string(c.anoDescobrimento)) | center | size(WIDTH, EQUAL, 6), separator(),
+                    text(std::to_string(c.distanciaTerra)) | center | size(WIDTH, EQUAL, 12), separator(),
+                    text(std::string(1, c.hemisferio)) | center | size(WIDTH, EQUAL, 12), separator(),
+                    paragraph(c.significado) | center | flex
+                })
+            );
         }
-        auto t = Table(matrix);
-        
-        t.SelectRow(0).Decorate(bold | color(Color::Cyan));
-        t.SelectAll().Border(BorderStyle::LIGHT);
-        t.SelectAll().DecorateCells(center);
-        
-        return t.Render();
+
+        return vbox(std::move(rows));
     }
 
     Element DesignInterface(
@@ -63,13 +65,13 @@ namespace StellarUi
                     text("* .   .  * * .   .  * * .   .  *") | color(Color::YellowLight) | hcenter,
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
                     separator(),
-                    _RenderTable(df) | frame | flex
+                    _RenderTable(df) | flex
                 });
                 break;
             }
             case 1: {
                 dynamic_content = vbox({
-                    text(" Adicionar Nova Constelação ") | bold,
+                    text(" Adicionar Nova Constelação ") | bold | color(Color::Green),
                     separator(),
                     hbox(text(" Nome: "), inputs[0]->Render()),
                     hbox(text(" Ano:  "), inputs[1]->Render()),
@@ -82,7 +84,7 @@ namespace StellarUi
             }
             case 3:{
                 dynamic_content = vbox({
-                    text(" Remover constelação ") | bold | hcenter | color(Color::Red),
+                    text(" Remover constelação ") | bold | color(Color::Red),
                     separator(),
                     hbox(text(" Id Para Remover: "), inputs[5]->Render()),
                     text("(Pressione ENTER para salvar)") | dim
