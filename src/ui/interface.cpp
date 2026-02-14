@@ -10,7 +10,7 @@
 
 using namespace ftxui;
 
-namespace StellarUi
+namespace stellar
 {
     Element _RenderTable(Vetor& vetor)
     {

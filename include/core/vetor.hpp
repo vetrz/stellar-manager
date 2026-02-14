@@ -3,33 +3,38 @@
 
 #include "models/constellation.hpp"
 
-struct Vetor
+namespace stellar 
 {
-    private:
-        int _size;
-        int _capacity;
-        Constellation* _data;
+    struct Vetor
+    {
+        private:
+            int _size;
+            int _capacity;
+            Constellation* _data;
 
-         void _reserve(int capacity);
-    
-    public:
-        Vetor();
-        Vetor(const Vetor& other); 
-        ~Vetor();
+            void _reserve(int capacity);
+        
+        public:
+            Vetor();
+            Vetor(const Vetor& other); 
+            ~Vetor();
 
-        Vetor& operator=(const Vetor& other);
+            Vetor& operator=(const Vetor& other);
 
-        int size() const;
-        int capacity() const;
+            int size() const;
+            int capacity() const;
 
-        Constellation& operator[](int index);
+            Constellation& operator[](int index);
 
-        void show();
-        void push(Constellation constellation);
-        void pop();
-        void remove(int index);
+            void show();
+            void push(Constellation constellation);
+            void pop();
+            void remove(int index);
 
-        Vetor filter(bool (*rule)(Constellation));
-};
+            Vetor filter(bool (*rule)(Constellation));
+    };
+}
+
+
 
 #endif // VETOR_HPP

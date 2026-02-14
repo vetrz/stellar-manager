@@ -6,18 +6,18 @@
 
 int main() 
 {
-    Vetor df;
-    Constellation c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
-    c1 = addConstellation(1, "Cruzeiro do Sul", 1589, 321.0, 'S', "Guia de navegantes");
-    c2 = addConstellation(2, "Ursa Maior", 150, 80.0, 'N', "Ninfa Calisto transformada");
-    c3 = addConstellation(3, "Orion", 150, 773.0, 'N', "O Gigante Cacador");
-    c4 = addConstellation(4, "Centauro", 150, 4.37, 'S', "Quiron o mestre sabio");
-    c5 = addConstellation(5, "Cassiopeia", 150, 54.0, 'N', "Rainha vaidosa punida");
-    c6 = addConstellation(6, "Escorpiao", 150, 550.0, 'S', "O algoz de Orion");
-    c7 = addConstellation(7, "Andromeda", 150, 97.0, 'N', "Princesa acorrentada");
-    c8 = addConstellation(8, "Leao", 150, 77.0, 'N', "O Leao de Nemeia");
-    c9 = addConstellation(9, "Fenix", 1597, 77.0, 'S', "Passaro que renasce");
-    c10 = addConstellation(10, "Pegaso", 150, 133.0, 'N', "O Cavalo Alado");
+    stellar::Vetor df;
+    stellar::Constellation c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
+    c1 = stellar::addConstellation(1, "Cruzeiro do Sul", 1589, 321.0, 'S', "Guia de navegantes");
+    c2 = stellar::addConstellation(2, "Ursa Maior", 150, 80.0, 'N', "Ninfa Calisto transformada");
+    c3 = stellar::addConstellation(3, "Orion", 150, 773.0, 'N', "O Gigante Cacador");
+    c4 = stellar::addConstellation(4, "Centauro", 150, 4.37, 'S', "Quiron o mestre sabio");
+    c5 = stellar::addConstellation(5, "Cassiopeia", 150, 54.0, 'N', "Rainha vaidosa punida");
+    c6 = stellar::addConstellation(6, "Escorpiao", 150, 550.0, 'S', "O algoz de Orion");
+    c7 = stellar::addConstellation(7, "Andromeda", 150, 97.0, 'N', "Princesa acorrentada");
+    c8 = stellar::addConstellation(8, "Leao", 150, 77.0, 'N', "O Leao de Nemeia");
+    c9 = stellar::addConstellation(9, "Fenix", 1597, 77.0, 'S', "Passaro que renasce");
+    c10 = stellar::addConstellation(10, "Pegaso", 150, 133.0, 'N', "O Cavalo Alado");
 
     df.push(c1);
     df.push(c2);
@@ -62,7 +62,7 @@ int main()
     auto component_with_input = ftxui::CatchEvent(main_container, [&](ftxui::Event event) -> bool{
         if (event == ftxui::Event::Return){
             if(active_screen == 1) {
-                Constellation c = addConstellation(
+                stellar::Constellation c = stellar::addConstellation(
                     df[df.size()-1].id + 1,
                     new_name,
                     std::stoi(new_year),
@@ -94,7 +94,7 @@ int main()
     });
 
     auto main_renderer = ftxui::Renderer(component_with_input, [&] {
-        return StellarUi::DesignInterface(
+        return stellar::DesignInterface(
             active_screen, 
             menu,
             inputs,

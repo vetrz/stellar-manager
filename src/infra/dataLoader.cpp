@@ -4,4 +4,7 @@
 #include <fstream>
 #include <iostream>
 
-
+namespace stellar
+{
+    
+}
