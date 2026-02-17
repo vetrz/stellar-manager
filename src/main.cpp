@@ -1,22 +1,108 @@
-#include "../include/constellation.h"
-#include "../include//vetor.h"
-#include "../include/dataLoader.h"
-#include <iostream>
+#include <ftxui/component/component.hpp>
+#include <ftxui/component/screen_interactive.hpp>
+#include "ui/interface.hpp"
+#include "models/constellation.hpp"
+#include "core/vetor.hpp"
 
-int main()
+int main() 
 {
-    Vetor vetor;
-    Constellation c;
-    int quantidade;
+    stellar::Vetor df;
+    stellar::Constellation c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
+    c1 = stellar::addConstellation(1, "Cruzeiro do Sul", 1589, 321.0, 'S', "Guia de navegantes");
+    c2 = stellar::addConstellation(2, "Ursa Maior", 150, 80.0, 'N', "Ninfa Calisto transformada");
+    c3 = stellar::addConstellation(3, "Orion", 150, 773.0, 'N', "O Gigante Cacador");
+    c4 = stellar::addConstellation(4, "Centauro", 150, 4.37, 'S', "Quiron o mestre sabio");
+    c5 = stellar::addConstellation(5, "Cassiopeia", 150, 54.0, 'N', "Rainha vaidosa punida");
+    c6 = stellar::addConstellation(6, "Escorpiao", 150, 550.0, 'S', "O algoz de Orion");
+    c7 = stellar::addConstellation(7, "Andromeda", 150, 97.0, 'N', "Princesa acorrentada");
+    c8 = stellar::addConstellation(8, "Leao", 150, 77.0, 'N', "O Leao de Nemeia");
+    c9 = stellar::addConstellation(9, "Fenix", 1597, 77.0, 'S', "Passaro que renasce");
+    c10 = stellar::addConstellation(10, "Pegaso", 150, 133.0, 'N', "O Cavalo Alado");
 
-    // std::cout << "Digite a Quantidade de usuarios que deseja inserir: "; 
-    // std::cin >> quantidade;
+    df.push(c1);
+    df.push(c2);
+    df.push(c3);
+    df.push(c4);
+    df.push(c5);
+    df.push(c6);
+    df.push(c7);
+    df.push(c8);
+    df.push(c9);
+    df.push(c10);
 
-    // for (int i = 0; i < quantidade; i++){
-    //     vetor.push(addConstellationFromInput(i+1));
-    // }
+    auto screen = ftxui::ScreenInteractive::TerminalOutput();
 
-    readFromFile(vetor,"data/constellation.csv");
+    int active_screen = 0;
+    std::vector<std::string> options_menu = {
+        "Listar Tudo",
+        "Adicionar Nova",
+        "Editar Selecionada",
+        "Excluir",
+        "Sair"
+    };
 
-    vetor.show();
+    auto menu = ftxui::Menu(&options_menu, &active_screen);
+
+    std::string new_name, new_year, new_distance, new_hemisphere, new_meaning, id_for_remove;
+
+    std::vector<ftxui::Component> inputs = {
+        (ftxui::Input(&new_name, "Nome da constelação")), 
+        (ftxui::Input(&new_year, "Ano de descobrimento")),
+        (ftxui::Input(&new_distance, "Distância da Terra")),
+        (ftxui::Input(&new_hemisphere, "Hemisferio localizado")),
+        (ftxui::Input(&new_meaning, "Significado")),
+        (ftxui::Input(&id_for_remove, "Digite o id para excluir"))
+    };
+
+    auto main_container = ftxui::Container::Vertical({
+        menu, 
+        inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5]
+    });
+
+    auto component_with_input = ftxui::CatchEvent(main_container, [&](ftxui::Event event) -> bool{
+        if (event == ftxui::Event::Return){
+            if(active_screen == 1) {
+                stellar::Constellation c = stellar::addConstellation(
+                    df[df.size()-1].id + 1,
+                    new_name,
+                    std::stoi(new_year),
+                    std::stof(new_distance),
+                    new_hemisphere[0],
+                    new_meaning
+                );
+
+                df.push(c);
+
+                new_name = ""; new_year = ""; new_distance = ""; new_hemisphere = ""; new_meaning = "";
+
+                active_screen = 0;
+
+                return true;
+            }
+            if (active_screen == 3){
+                int target = std::stoi(id_for_remove) - 1;
+
+                df.remove(target);
+
+                id_for_remove = "";
+                active_screen = 0;
+
+                return true;
+            }
+        }
+        return false;
+    });
+
+    auto main_renderer = ftxui::Renderer(component_with_input, [&] {
+        return stellar::DesignInterface(
+            active_screen, 
+            menu,
+            inputs,
+            df, 
+            screen);
+        });
+
+    screen.Loop(main_renderer);
+
+    return 0;
 }

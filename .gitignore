@@ -1,3 +1,6 @@
-# Banca de Testes
+# Bancada de Testes
 test/
 test_build.sh
+
+
+build/
