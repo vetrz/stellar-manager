@@ -82,11 +82,26 @@ namespace stellar
                 });
                 break;
             }
+            case 2: {
+                dynamic_content = vbox({
+                    text(" Editar uma Constelação ") | bold | color(Color::BlueLight),
+                    separator(),
+                    hbox(text(" Id da Constelação para Modificar: "), inputs[5]->Render()),
+                    separator(),
+                    hbox(text(" Nome: "), inputs[0]->Render()),
+                    hbox(text(" Ano:  "), inputs[1]->Render()),
+                    hbox(text(" Distancia da Terra:  "), inputs[2]->Render()),
+                    hbox(text(" hemisferio:  "), inputs[3]->Render()),
+                    hbox(text(" Significado:  "), inputs[4]->Render()),
+                    text("(Pressione ENTER para salvar)") | dim
+                });
+                break;
+            }
             case 3:{
                 dynamic_content = vbox({
                     text(" Remover constelação ") | bold | color(Color::Red),
                     separator(),
-                    hbox(text(" Id Para Remover: "), inputs[5]->Render()),
+                    hbox(text(" Id Para Remover: "), inputs[6]->Render()),
                     text("(Pressione ENTER para salvar)") | dim
                 });
                 break;
