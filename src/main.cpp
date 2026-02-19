@@ -3,32 +3,13 @@
 #include "ui/interface.hpp"
 #include "models/constellation.hpp"
 #include "core/vetor.hpp"
+#include "infra/dataLoader.hpp"
 
 int main() 
 {
     stellar::Vetor df;
-    stellar::Constellation c1,c2,c3,c4,c5,c6,c7,c8,c9,c10;
-    c1 = stellar::addConstellation(1, "Cruzeiro do Sul", 1589, 321.0, 'S', "Guia de navegantes");
-    c2 = stellar::addConstellation(2, "Ursa Maior", 150, 80.0, 'N', "Ninfa Calisto transformada");
-    c3 = stellar::addConstellation(3, "Orion", 150, 773.0, 'N', "O Gigante Cacador");
-    c4 = stellar::addConstellation(4, "Centauro", 150, 4.37, 'S', "Quiron o mestre sabio");
-    c5 = stellar::addConstellation(5, "Cassiopeia", 150, 54.0, 'N', "Rainha vaidosa punida");
-    c6 = stellar::addConstellation(6, "Escorpiao", 150, 550.0, 'S', "O algoz de Orion");
-    c7 = stellar::addConstellation(7, "Andromeda", 150, 97.0, 'N', "Princesa acorrentada");
-    c8 = stellar::addConstellation(8, "Leao", 150, 77.0, 'N', "O Leao de Nemeia");
-    c9 = stellar::addConstellation(9, "Fenix", 1597, 77.0, 'S', "Passaro que renasce");
-    c10 = stellar::addConstellation(10, "Pegaso", 150, 133.0, 'N', "O Cavalo Alado");
-
-    df.push(c1);
-    df.push(c2);
-    df.push(c3);
-    df.push(c4);
-    df.push(c5);
-    df.push(c6);
-    df.push(c7);
-    df.push(c8);
-    df.push(c9);
-    df.push(c10);
+    
+    stellar::readFromFile(df, "../data/constellation.csv");
 
     auto screen = ftxui::ScreenInteractive::TerminalOutput();
 
@@ -89,7 +70,7 @@ int main()
                 df[target].hemisferio = std::toupper(new_hemisphere[0]);
                 df[target].significado = new_meaning; 
 
-                new_name = ""; new_year = ""; new_distance = ""; new_hemisphere = ""; new_meaning = "";
+                id_to_modify = ""; new_name = ""; new_year = ""; new_distance = ""; new_hemisphere = ""; new_meaning = "";
 
                 active_screen = 0;
 
