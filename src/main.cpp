@@ -2,6 +2,7 @@
 #include <ftxui/component/screen_interactive.hpp>
 #include "ui/interface.hpp"
 #include "models/constellation.hpp"
+#include "services/constellationFilters.hpp"
 #include "core/vetor.hpp"
 
 int main() 
@@ -32,10 +33,23 @@ int main()
 
     auto screen = ftxui::ScreenInteractive::TerminalOutput();
 
+    std::vector<std::string> filter_options = {
+        "Todos", "Hemisfério", "Id", "Nome", "Intervalo"
+    };
+    
+
+    int selected_filter = 0; 
+
+      // componente de seleção
+    auto filter_radio = ftxui::Radiobox(&filter_options, &selected_filter);
+
+
+
     int active_screen = 0;
     std::vector<std::string> options_menu = {
         "Listar Tudo",
         "Adicionar Nova",
+        "Buscar ou Filtrar",
         "Editar Selecionada",
         "Excluir",
         "Sair"
@@ -54,13 +68,28 @@ int main()
         (ftxui::Input(&id_for_remove, "Digite o id para excluir"))
     };
 
+
+    std::string name, hemisferio, Id, Id_inicio, Id_final;
+
+    std::vector<ftxui::Component> inputs_filtro = {
+        ftxui::Input(&name, "Nome"),
+        ftxui::Input(&hemisferio, "Hemisfério"),
+        ftxui::Input(&Id, "ID"),
+        ftxui::Input(&Id_inicio, "ID Mínimo"),
+        ftxui::Input(&Id_final, "ID Máximo")
+    };
+
+
     auto main_container = ftxui::Container::Vertical({
         menu, 
-        inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5]
+        filter_radio,
+        inputs[0], inputs[1], inputs[2], inputs[3], inputs[4], inputs[5],
+        inputs_filtro[0],inputs_filtro[1],inputs_filtro[2],inputs_filtro[3],inputs_filtro[4]
     });
 
     auto component_with_input = ftxui::CatchEvent(main_container, [&](ftxui::Event event) -> bool{
         if (event == ftxui::Event::Return){
+
             if(active_screen == 1) {
                 stellar::Constellation c = stellar::addConstellation(
                     df[df.size()-1].id + 1,
@@ -79,7 +108,8 @@ int main()
 
                 return true;
             }
-            if (active_screen == 3){
+
+            if (active_screen == 4){
                 int target = std::stoi(id_for_remove) - 1;
 
                 df.remove(target);
@@ -94,15 +124,55 @@ int main()
     });
 
     auto main_renderer = ftxui::Renderer(component_with_input, [&] {
+        stellar::Vetor filtered_constellation;
+        switch (selected_filter) {
+                
+            case 0:
+                filtered_constellation = df.filter([](const stellar::Constellation& c) {return true;}); // Exibe todos
+                break;
+            case 1:
+                filtered_constellation = df.filter([&](const stellar::Constellation& c) {
+                    if (hemisferio.empty()) return true;
+                    return stellar::byHemisferio(c, hemisferio[0]);
+                    });
+                break;
+            case 2: 
+                filtered_constellation = df.filter([&] (const stellar::Constellation& c) {
+                    if (Id.empty()) return true;
+                    return stellar::byId(c, std::stoi(Id));
+                    });
+                break;
+
+            case 3: 
+                filtered_constellation = df.filter([&] (const stellar::Constellation& c) {
+                    if (name.empty()) return true;
+                    return stellar::byName(c, name);
+                    });
+                break;
+            case 4:
+                filtered_constellation = df.filter([&] (const stellar::Constellation& c) {
+                    if (Id_inicio.empty() || Id_final.empty()) return true;
+                    return stellar::byInterval(c,std::stoi(Id_inicio),std::stoi(Id_final));
+                    });
+                break;
+        }
+
         return stellar::DesignInterface(
-            active_screen, 
+            active_screen,
             menu,
+            filter_radio,
             inputs,
+            inputs_filtro,
+            filtered_constellation,
             df, 
-            screen);
+            screen,
+            selected_filter);
         });
 
     screen.Loop(main_renderer);
 
     return 0;
 }
+
+
+

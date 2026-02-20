@@ -19,9 +19,13 @@ namespace stellar
     Element DesignInterface(
         int active_screen, 
         Component& menu, 
+        Component& filter_radio, // renderizar o rádio
         std::vector<ftxui::Component>& inputs,
+        std::vector<ftxui::Component>& inputs_filtro, // adição dos inputs dos filtros
+        stellar::Vetor& filtered_constellation, //adição do vetor filtrado para exibição
         Vetor& df, 
-        ScreenInteractive& screen);
+        ScreenInteractive& screen,
+        int selected_filter);
 }
 
 #endif // INTERFACE_HPP

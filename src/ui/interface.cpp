@@ -47,12 +47,17 @@ namespace stellar
         return vbox(std::move(rows));
     }
 
+
     Element DesignInterface(
         int active_screen, 
         Component& menu, 
+        Component& filter_radio, // parâmetro de filtragem
         std::vector<ftxui::Component>& inputs,
+        std::vector<ftxui::Component>& inputs_filtro,
+        Vetor& filtered_constellation,
         Vetor& df, 
-        ScreenInteractive& screen) 
+        ScreenInteractive& screen,
+        int selected_filter) // parâmetro de filtragem 
     {
         
         Element dynamic_content;
@@ -65,7 +70,7 @@ namespace stellar
                     text("* .   .  * * .   .  * * .   .  *") | color(Color::YellowLight) | hcenter,
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
                     separator(),
-                    _RenderTable(df) | flex
+                    _RenderTable(filtered_constellation) | flex // mostrando vetor filtrado (normal se for selecionado)
                 });
                 break;
             }
@@ -82,7 +87,43 @@ namespace stellar
                 });
                 break;
             }
-            case 3:{
+
+           case 2: {
+                ftxui::Element campo_especifico = ftxui::emptyElement();
+
+                if (selected_filter == 1) {
+                    campo_especifico = ftxui::window(ftxui::text("Digite o Hemisfério: "), inputs_filtro[1]->Render());
+                } else if (selected_filter == 2) {
+                    campo_especifico = ftxui::window(ftxui::text("Digite o ID exato: "), inputs_filtro[2]->Render());
+                } else if (selected_filter == 3) {
+                    campo_especifico = ftxui::window(ftxui::text("Digite o Nome: "), inputs_filtro[0]->Render());
+                } else if (selected_filter == 4) {
+                    campo_especifico = ftxui::hbox({
+                        ftxui::window(ftxui::text("Digite o ID inicial: "), inputs_filtro[3]->Render()) | ftxui::flex,
+                        ftxui::window(ftxui::text("Digite o ID final: "),   inputs_filtro[4]->Render()) | ftxui::flex,
+                    });
+                }
+
+                dynamic_content = ftxui::vbox({
+                    ftxui::text(" Configurações de Filtro ") | ftxui::bold | ftxui::color(ftxui::Color::Yellow),
+                    ftxui::separator(),
+                    ftxui::text("Selecione o método de filtragem:"),
+                    ftxui::separator(),
+
+                    filter_radio->Render() | ftxui::border,
+                    ftxui::separator(),
+
+                    campo_especifico, // O elemento que criamos acima já é do tipo correto!
+
+                    ftxui::separator(),
+                    ftxui::text("A escolha será aplicada na aba 'Listar Tudo'") | ftxui::dim
+                });
+                break;
+            }
+
+            
+            
+            case 4:{
                 dynamic_content = vbox({
                     text(" Remover constelação ") | bold | color(Color::Red),
                     separator(),
@@ -91,7 +132,7 @@ namespace stellar
                 });
                 break;
             }
-            case 4: {
+            case 5: {
                 screen.ExitLoopClosure()();
                 dynamic_content = text("Saindo...");
                 break;

@@ -126,7 +126,7 @@ namespace stellar
     }
 
     /* Filtra e cria o Vetor com os itens conforme a regra */
-    Vetor Vetor::filter(bool (*rule)(Constellation))
+    Vetor Vetor::filter(std::function<bool(const Constellation&)> rule)
     {
         Vetor filtered;
 

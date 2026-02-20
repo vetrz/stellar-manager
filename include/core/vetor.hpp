@@ -2,6 +2,7 @@
 #define VETOR_HPP
 
 #include "models/constellation.hpp"
+#include <functional>
 
 namespace stellar 
 {
@@ -31,7 +32,7 @@ namespace stellar
             void pop();
             void remove(int index);
 
-            Vetor filter(bool (*rule)(Constellation));
+            Vetor filter(std::function<bool(const Constellation&)> rule);
     };
 }
 

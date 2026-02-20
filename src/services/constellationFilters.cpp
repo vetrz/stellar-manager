@@ -4,24 +4,23 @@
 
 namespace stellar 
 {
-    /* Filtros por Hemisferio */
-    bool isNorth(Constellation constellation)
-    {
-        return constellation.hemisferio == 'N';
+
+        
+    bool byHemisferio(Constellation constellation, char hemisphere){
+        return constellation.hemisferio == hemisphere;
     }
 
-    bool isWest(Constellation constellation)
-    {
-        return constellation.hemisferio == 'O';
+    bool byInterval(Constellation constellation, int start, int end){
+        return constellation.id >= start && constellation.id <= end;
     }
 
-    bool isEast(Constellation constellation)
-    {
-        return constellation.hemisferio == 'L';
+    bool byName(Constellation constellation, std::string name){
+        return constellation.nome == name;
     }
 
-    bool isSouth(Constellation constellation)
-    {
-        return constellation.hemisferio == 'S';
-    }
+    bool byId(Constellation constellation, int Id){ 
+        return constellation.id == Id;
+    } 
+
+
 }
