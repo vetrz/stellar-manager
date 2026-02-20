@@ -70,6 +70,8 @@ int main()
 
                 df.push(c);
 
+                stellar::saveToFile(df,"../data/constellation.csv");
+
                 new_name = ""; new_year = ""; new_distance = ""; new_hemisphere = ""; new_meaning = "";
 
                 active_screen = 0;
@@ -95,6 +97,8 @@ int main()
 
                 df.remove(target);
 
+                stellar::saveToFile(df,"../data/constellation.csv");
+                
                 id_to_remove = "";
                 active_screen = 0;
 

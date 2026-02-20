@@ -12,7 +12,7 @@ namespace stellar
     std::ifstream file(filename);
 
     if (!file) {
-        std::cout << "Erro ao abrir o arquivo [" << filename << "]" << std::endl;
+        std::cerr << "Erro: não foi possível abrir o arquivo." << std::endl;
         return;
     }
 
@@ -52,4 +52,24 @@ namespace stellar
         }
 
     }
+
+    void saveToFile(Vetor &vetor, std::string filename){
+        std::ofstream file(filename);
+
+        if (!file) {
+            std::cerr << "Erro: Não foi possivel criar o arquivo CSV." << std::endl;
+            return;
+        }
+
+        // escreve o cabeçalho no arquivo
+        file << "Identificador,Nome,Ano de descobrimento,Distancia da Terra,Hemisferio,Significado Mitologico\n";
+
+        // escreve os dados em cada linha do csv de acordo com o índice do vetor
+        int i;
+        for (i = 0; i < vetor.size(); i++){
+            file << vetor[i].id << "," << vetor[i].nome << "," << vetor[i].anoDescobrimento << "," << vetor[i].distanciaTerra << "," << vetor[i].hemisferio << "," << vetor[i].significado << "\n";
+        }
+
+        file.close();
+    } 
 }
