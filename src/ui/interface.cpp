@@ -12,9 +12,12 @@ using namespace ftxui;
 
 namespace stellar
 {
-    Element _RenderTable(Vetor& vetor)
+    Element _RenderTable(Vetor& vetor, int current_page)
     {
         std::vector<Element> rows;
+        int items_per_page = 15;
+        int start = current_page * items_per_page;
+        int end = std::min(start + items_per_page, (int)vetor.size());
         
         rows.push_back(
             hbox({
@@ -29,7 +32,7 @@ namespace stellar
         
         rows.push_back(separator());
         
-        for (int i = 0; i < vetor.size(); i++){
+        for (int i = start; i < end; i++){
             Constellation& c = vetor[i];
             
             rows.push_back(
@@ -48,7 +51,8 @@ namespace stellar
     }
 
     Element DesignInterface(
-        int active_screen, 
+        int active_screen,
+        int current_page, 
         Component& menu, 
         std::vector<ftxui::Component>& inputs,
         Vetor& df, 
@@ -58,14 +62,20 @@ namespace stellar
         Element dynamic_content;
         switch (active_screen) {
             case 0: {
+                int total_pages = (df.size() + 14) / 15;
+
                 dynamic_content = vbox({
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
                     text("* .   .  * * .   .  * * .   .  *") | color(Color::YellowLight) | hcenter,
                     text(" Lista de Constelações ") | bold | hcenter | color(Color::Cyan),
                     text("* .   .  * * .   .  * * .   .  *") | color(Color::YellowLight) | hcenter,
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
+                    text("Página " + std::to_string(current_page + 1) + " de " + std::to_string(total_pages)) | hcenter | dim | color(Color::LightGoldenrod1),
                     separator(),
-                    _RenderTable(df) | flex
+                    _RenderTable(df, current_page) | flex,
+                    separator(),
+                    text(" <- Página Anterior | Próxima Página -> ") | hcenter,
+                    separator()
                 });
                 break;
             }

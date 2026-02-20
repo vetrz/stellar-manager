@@ -14,10 +14,11 @@ using namespace ftxui;
 
 namespace stellar
 {
-    Element _RenderTable(Vetor& vetor);
+    Element _RenderTable(Vetor& vetor, int current_page);
 
     Element DesignInterface(
-        int active_screen, 
+        int active_screen,
+        int current_page,
         Component& menu, 
         std::vector<ftxui::Component>& inputs,
         Vetor& df, 
