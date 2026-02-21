@@ -64,11 +64,11 @@ int main()
 
     std::string name, hemisphere, id, start_id, end_id;
     std::vector<ftxui::Component> inputs_filter = {
-        ftxui::Input(&name, "Nome"),
-        ftxui::Input(&hemisphere, "Hemisfério"),
-        ftxui::Input(&id, "ID"),
-        ftxui::Input(&start_id, "ID Mínimo"),
-        ftxui::Input(&end_id, "ID Máximo")
+        ftxui::Input(&name, "Nome da Constelação que quer Buscar "),
+        ftxui::Input(&hemisphere, "Hemisfério que deseja filtrar"),
+        ftxui::Input(&id, "ID da Constelação que quer Buscar"),
+        ftxui::Input(&start_id, "ID Minimo para o intervalo"),
+        ftxui::Input(&end_id, "ID Maximo para o intervalo")
     };
 
     auto main_container = ftxui::Container::Vertical({
@@ -83,7 +83,11 @@ int main()
     auto interactive_component = ftxui::CatchEvent(main_container, [&](ftxui::Event event) -> bool{
         if (event == ftxui::Event::Escape){
             if (active_screen != 0){
-                active_screen = 0; current_page = 0; return true;
+                active_screen = 0; current_page = 0; 
+                new_name = ""; new_year = ""; new_distance = ""; new_hemisphere = ""; new_meaning = "";
+                id_to_modify = ""; id_to_remove = "";
+
+                return true;
             }
         }
 
