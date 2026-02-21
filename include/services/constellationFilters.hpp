@@ -6,7 +6,7 @@
 namespace stellar 
 {
 
-    bool byHemisferio(Constellation constellation, char hemisphere);
+    bool byHemisphere(Constellation constellation, char hemisphere);
 
     bool byInterval(Constellation constellation, int start, int end);
 

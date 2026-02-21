@@ -10,10 +10,10 @@
 #include "models/constellation.hpp"
 #include "core/vetor.hpp"
 
-using namespace ftxui;
-
 namespace stellar
 {
+    using namespace ftxui;
+
     Element _RenderTable(Vetor& vetor, int current_page);
 
     Element DesignInterface(
@@ -21,10 +21,9 @@ namespace stellar
         int current_page,
         Component& menu, 
         Component& filter,
-        std::vector<ftxui::Component>& inputs,
-        std::vector<ftxui::Component>& inputs_filter,
-        stellar::Vetor& filtered_constellation,
-        Vetor& df, 
+        std::vector<Component>& inputs,
+        std::vector<Component>& inputs_filter,
+        Vetor& filtered_constellation,
         ScreenInteractive& screen,
         int selected_filter);
 }

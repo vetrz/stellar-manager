@@ -14,17 +14,6 @@ int main()
 
     auto screen = ftxui::ScreenInteractive::TerminalOutput();
 
-    std::vector<std::string> filter_options = {
-        "Todos", 
-        "Hemisfério", 
-        "Id", 
-        "Nome", 
-        "Intervalo"
-    };
-    
-    int selected_filter = 0; 
-    auto filter = ftxui::Radiobox(&filter_options, &selected_filter);
-
     int active_screen = 0;
     int current_page = 0;
 
@@ -40,28 +29,37 @@ int main()
     auto menu = ftxui::Menu(&options_menu, &active_screen);
 
     std::string new_name, new_year, new_distance, new_hemisphere, new_meaning, id_to_modify, id_to_remove;
-
     std::vector<ftxui::Component> inputs = {
         (ftxui::Input(&new_name, "Nome da constelação")), 
         (ftxui::Input(&new_year, "Ano de descobrimento")),
         (ftxui::Input(&new_distance, "Distância da Terra")),
-        (ftxui::Input(&new_hemisphere, "Hemisferio localizado")),
+        (ftxui::Input(&new_hemisphere, "hemisphere localizado")),
         (ftxui::Input(&new_meaning, "Significado")),
         (ftxui::Input(&id_to_modify, "Digite o id para modificar")),
         (ftxui::Input(&id_to_remove, "Digite o id para excluir"))
     };
 
+    stellar::Vetor filtered_constellation = df;
+    int selected_filter = 0; 
 
-    std::string name, hemisferio, Id, Id_inicio, Id_final;
-
-    std::vector<ftxui::Component> inputs_filter = {
-        ftxui::Input(&name, "Nome"),
-        ftxui::Input(&hemisferio, "Hemisfério"),
-        ftxui::Input(&Id, "ID"),
-        ftxui::Input(&Id_inicio, "ID Mínimo"),
-        ftxui::Input(&Id_final, "ID Máximo")
+    std::vector<std::string> filter_options = {
+        "Todos", 
+        "Hemisfério", 
+        "Id", 
+        "Nome", 
+        "Intervalo"
     };
 
+    auto filter = ftxui::Radiobox(&filter_options, &selected_filter);
+
+    std::string name, hemisphere, id, start_id, end_id;
+    std::vector<ftxui::Component> inputs_filter = {
+        ftxui::Input(&name, "Nome"),
+        ftxui::Input(&hemisphere, "Hemisfério"),
+        ftxui::Input(&id, "ID"),
+        ftxui::Input(&start_id, "ID Mínimo"),
+        ftxui::Input(&end_id, "ID Máximo")
+    };
 
     auto main_container = ftxui::Container::Vertical({
         menu, 
@@ -72,7 +70,7 @@ int main()
 
     auto interactive_component = ftxui::CatchEvent(main_container, [&](ftxui::Event event) -> bool{
         if (active_screen == 0) {
-            int total_pages = (df.size() + 14) / 15;
+            int total_pages = (filtered_constellation.size() + 14) / 15;
 
             if (event == ftxui::Event::ArrowRight) {
                 if (current_page < total_pages - 1) current_page++;
@@ -97,10 +95,7 @@ int main()
 
                 df.push(c);
 
-                stellar::saveToFile(df,"../data/constellation.csv");
-
                 new_name = ""; new_year = ""; new_distance = ""; new_hemisphere = ""; new_meaning = "";
-
                 active_screen = 0;
 
                 return true;
@@ -123,7 +118,6 @@ int main()
                 int target = std::stoi(id_to_remove) - 1;
 
                 df.remove(target);
-                stellar::saveToFile(df,"../data/constellation.csv");
                 
                 id_to_remove = "";
                 active_screen = 0;
@@ -135,22 +129,20 @@ int main()
     });
 
     auto main_renderer = ftxui::Renderer(interactive_component, [&] {
-        stellar::Vetor filtered_constellation;
         switch (selected_filter) {
-                
             case 0:
                 filtered_constellation = df.filter([](const stellar::Constellation& c) {return true;}); // Exibe todos
                 break;
             case 1:
                 filtered_constellation = df.filter([&](const stellar::Constellation& c) {
-                    if (hemisferio.empty()) return true;
-                    return stellar::byHemisferio(c, hemisferio[0]);
+                    if (hemisphere.empty()) return true;
+                    return stellar::byHemisphere(c, std::toupper(hemisphere[0]));
                     });
                 break;
             case 2: 
                 filtered_constellation = df.filter([&] (const stellar::Constellation& c) {
-                    if (Id.empty()) return true;
-                    return stellar::byId(c, std::stoi(Id));
+                    if (id.empty()) return true;
+                    return stellar::byId(c, std::stoi(id));
                     });
                 break;
 
@@ -162,12 +154,11 @@ int main()
                 break;
             case 4:
                 filtered_constellation = df.filter([&] (const stellar::Constellation& c) {
-                    if (Id_inicio.empty() || Id_final.empty()) return true;
-                    return stellar::byInterval(c,std::stoi(Id_inicio),std::stoi(Id_final));
+                    if (start_id.empty() || end_id.empty()) return true;
+                    return stellar::byInterval(c,std::stoi(start_id),std::stoi(end_id));
                     });
                 break;
         }
-
         return stellar::DesignInterface(
             active_screen, 
             current_page,
@@ -176,7 +167,6 @@ int main()
             inputs,
             inputs_filter,
             filtered_constellation,
-            df, 
             screen,
             selected_filter);
         });

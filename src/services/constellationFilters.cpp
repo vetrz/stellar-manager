@@ -4,7 +4,7 @@
 
 namespace stellar 
 {
-    bool byHemisferio(Constellation constellation, char hemisphere){
+    bool byHemisphere(Constellation constellation, char hemisphere){
         return constellation.hemisferio == hemisphere;
     }
 
@@ -18,5 +18,5 @@ namespace stellar
 
     bool byId(Constellation constellation, int Id){ 
         return constellation.id == Id;
-    } 
+    }
 }

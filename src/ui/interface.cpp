@@ -60,7 +60,6 @@ namespace stellar
         std::vector<Component>& inputs,
         std::vector<Component>& inputs_filter,
         Vetor& filtered_constellation,
-        Vetor& df, 
         ScreenInteractive& screen,
         int selected_filter)  
     {
@@ -68,7 +67,7 @@ namespace stellar
         Element dynamic_content;
         switch (active_screen) {
             case 0: {
-                int total_pages = (df.size() + 14) / 15;
+                int total_pages = (filtered_constellation.size() + 14) / 15;
 
                 dynamic_content = vbox({
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
@@ -120,7 +119,7 @@ namespace stellar
                 dynamic_content = vbox({
                     text(" Configurações de Filtro ") | bold | color(Color::Yellow),
                     separator(),
-                    text("Selecione o método de filtragem:"),
+                    text(" Selecione o método de filtragem:"),
                     separator(),
                     filter_radio->Render() | border,
                     separator(),
