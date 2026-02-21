@@ -1,13 +1,11 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/dom/elements.hpp>
-#include <ftxui/dom/table.hpp>
 #include <vector>
 #include <string>
 #include "models/constellation.hpp"
 #include "core/vetor.hpp"
 #include "ui/interface.hpp"
-
 
 namespace stellar
 {
@@ -165,7 +163,7 @@ namespace stellar
                     separator(),
                     exit_menu->Render() | color(Color::MistyRose3) | borderDouble,
                     separator(),
-                    text(" [<-] [->] Navegar | [Enter] Confirmar | [ESC] Voltar") | border
+                    text(" [↑] [↓] Navegar | [Enter] Confirmar | [ESC] Voltar") | border
                 });
                 break;
             }
