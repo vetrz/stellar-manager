@@ -28,7 +28,7 @@ namespace stellar
                 text(" Distância ") | center | size(WIDTH, EQUAL, 12), separator(),
                 text(" Hemisfério ") | center | size(WIDTH, EQUAL, 12), separator(),
                 text(" Significado Mitológico ") | center | flex 
-            }) | bold | color(Color::Cyan)
+            }) | bold | color(Color::LightCyan1Bis)
         );
         
         rows.push_back(separator());
@@ -87,7 +87,7 @@ namespace stellar
             }
             case 1: {
                 dynamic_content = vbox({
-                    text(" Adicionar Nova Constelação ") | bold | color(Color::Green),
+                    text(" Adicionar Nova Constelação ") | bold | color(Color::PaleGreen1),
                     separator(),
                     hbox(text(" Nome: "), inputs[0]->Render()),
                     hbox(text(" Ano:  "), inputs[1]->Render()),
@@ -119,7 +119,7 @@ namespace stellar
                 }
 
                 dynamic_content = vbox({
-                    text(" Configurações de Filtro ") | bold | color(Color::Yellow),
+                    text(" Configurações de Filtro ") | bold | color(Color::PaleTurquoise1),
                     separator(),
                     text(" Selecione o método de filtragem:"),
                     separator(),
@@ -135,7 +135,7 @@ namespace stellar
             }
             case 3: {
                 dynamic_content = vbox({
-                    text(" Editar uma Constelação ") | bold | color(Color::BlueLight),
+                    text(" Editar uma Constelação ") | bold | color(Color::SkyBlue1),
                     separator(),
                     hbox(text(" Id da Constelação para Modificar: "), inputs[5]->Render()),
                     separator(),
@@ -151,7 +151,7 @@ namespace stellar
             }
             case 4:{
                 dynamic_content = vbox({
-                    text(" Remover constelação ") | bold | color(Color::Red),
+                    text(" Remover constelação ") | bold | color(Color::RedLight),
                     separator(),
                     hbox(text(" Id Para Remover: "), inputs[6]->Render()),
                     separator(),
@@ -161,9 +161,9 @@ namespace stellar
             }
             case 5: {
                 dynamic_content = vbox({
-                    text( "Configurações de Saída ") | bold | color(Color::Yellow),
+                    text( "Configurações de Saída ") | bold | color(Color::PaleVioletRed1),
                     separator(),
-                    exit_menu->Render() | color(Color::Cyan) | borderDouble,
+                    exit_menu->Render() | color(Color::MistyRose3) | borderDouble,
                     separator(),
                     text(" [<-] [->] Navegar | [Enter] Confirmar | [ESC] Voltar") | border
                 });
@@ -175,13 +175,13 @@ namespace stellar
         }
         return hbox({
             vbox({
-                text(" OPÇÕES ") | bold | color(Color::Yellow),
+                text(" OPÇÕES ") | bold | color(Color::LightGoldenrod1),
                 separator(),
                 menu->Render(),
             }) | size(WIDTH, LESS_THAN, 25) | border,
             
             vbox({
-                text(" STELLAR MANAGER ") | bold | hcenter | color(Color::Cyan),
+                text(" STELLAR MANAGER ") | bold | hcenter | color(Color::CyanLight),
                 separator(),
                 dynamic_content | flex | frame,
             }) | flex | border
