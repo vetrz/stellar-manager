@@ -131,6 +131,8 @@ int main()
 
                 target = std::stoi(id_to_modify) - 1;
 
+                if (target >= 0 && target < df.size()) return true;
+
                 df[target].nome = new_name;
                 df[target].anoDescobrimento = std::stoi(new_year);
                 df[target].distanciaTerra = std::stof(new_distance);
@@ -147,10 +149,11 @@ int main()
 
                 target = std::stoi(id_to_remove) - 1;
 
+                if (target >= 0 && target < df.size()) return true;
+
                 df.remove(target);
                 
-                id_to_remove = "";
-                active_screen = 0;
+                id_to_remove = ""; active_screen = 0;
 
                 return true;
             }
