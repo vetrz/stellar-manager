@@ -10,7 +10,7 @@ int main()
 {
     stellar::Vetor df;
     
-    stellar::readFromFile(df, "../data/constellation.csv");
+    stellar::readFromFile(df, DATA_PATH);
 
     auto screen = ftxui::ScreenInteractive::TerminalOutput();
 
