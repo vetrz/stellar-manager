@@ -1,51 +1,89 @@
 Identificador,Nome,Ano de descobrimento,Distancia da Terra,Hemisferio,Significado Mitologico
-1,Cruzeiro do Sul,1589,321,S,Guia de navegantes
-2,Ursa Maior,150,80,N,Ninfa Calisto transformada
-3,Orion,150,773,N,O Gigante Cacador
+1,Cruzeiro do Sul,1589,320.6,S,Guia de navegantes
+2,Ursa Maior,150,82.6,N,Ninfa Calisto transformada
+3,Orion,150,772.9,N,O Gigante Cacador
 4,Centauro,150,4.37,S,Quiron o mestre sabio
-5,Cassiopeia,150,54,N,Rainha vaidosa punida
-6,Escorpiao,150,550,S,O algoz de Orion
-7,Andromeda,150,97,N,Princesa acorrentada
-8,Leao,150,77,N,O Leao de Nemeia
-9,Fenix,1597,77,S,Passaro que renasce
-10,Pegaso,150,133,N,O Cavalo Alado
+5,Cassiopeia,150,54.5,N,Rainha vaidosa punida
+6,Escorpiao,150,554.5,S,O algoz de Orion
+7,Andromeda,150,97.1,N,Princesa acorrentada
+8,Leao,150,79.3,N,O Leao de Nemeia
+9,Fenix,1597,84.6,S,Passaro que renasce
+10,Pegaso,150,139.6,N,O Cavalo Alado
 11,Cao Maior,150,8.6,S,O cao de caca de Orion
-12,Touro,150,65,N,O touro de Creta
-13,Gemeos,150,34,N,Os irmaos Castor e Polux
-14,Virgem,150,250,S,A deusa da agricultura Demeter
-15,Sagitario,150,144,S,O centauro arqueiro
-16,Aquario,150,390,S,O portador da agua
-17,Peixes,150,130,N,Afrodite e Eros em fuga
-18,Aries,150,66,N,O carneiro do velocino de ouro
-19,Libra,150,77,S,A balanca da justica
-20,Capricornio,150,39,S,A cabra do mar
-21,Cancer,150,290,N,O caranguejo gigante
-22,Ursa Menor,150,433,N,A pequena ursa
+12,Touro,150,65.3,N,O touro de Creta
+13,Gemeos,150,33.8,N,Os irmaos Castor e Polux
+14,Virgem,150,249.7,S,A deusa da agricultura Demeter
+15,Sagitario,150,143.2,S,O centauro arqueiro
+16,Aquario,150,523.5,S,O portador da agua
+17,Peixes,150,139.3,N,Afrodite e Eros em fuga
+18,Aries,150,65.8,N,O carneiro do velocino de ouro
+19,Libra,150,77.2,S,A balanca da justica
+20,Capricornio,150,38.6,S,A cabra do mar
+21,Cancer,150,290.4,N,O caranguejo gigante
+22,Ursa Menor,150,433.8,N,A pequena ursa
 23,Cao Menor,150,11.4,N,O segundo cao de Orion
-24,Lira,150,25,N,A lira de Orfeu
-25,Cisne,150,1400,N,Zeus disfarcado de cisne
+24,Lira,150,25.3,N,A lira de Orfeu
+25,Cisne,150,1411.7,N,Zeus disfarcado de cisne
 26,Aguia,150,16.7,N,A aguia de Zeus
 27,Boieiro,150,36.7,N,O pastor de ursos
-28,Auriga,150,42,N,O cocheiro
-29,Hercules,150,139,N,O grande heroi grego
-30,Perseu,150,590,N,O heroi que matou a Medusa
-31,Baleia,150,96,S,O monstro marinho Cetus
-32,Eridano,150,144,S,O rio mitico
-33,Hidra,150,177,S,A serpente de muitas cabecas
-34,Corvo,150,165,S,O passaro de Apolo
-35,Taca,150,196,S,O calice de Apolo
-36,Dragao,150,154,N,O dragao Ladao
-37,Cefeu,150,49,N,O rei da Etiopia
-38,Coroa Boreal,150,75,N,A coroa de Ariadne
-39,Coroa Austral,150,125,S,A coroa do sul
-40,Lobo,150,506,S,O lobo sacrificado
-41,Altar,150,713,S,O altar dos deuses
-42,Pavao,1597,183,S,O passaro sagrado de Hera
-43,Grou,1597,101,S,A ave grou
-44,Tucano,1597,199,S,A ave tropical
-45,Indio,1597,98,S,O nativo americano
-46,Camaleao,1597,63,S,O lagarto que muda de cor
-47,Peixe Voador,1597,108,S,O peixe voador
-48,Pomba,1592,268,S,A pomba de Noe
-49,Lince,1687,222,N,O felino de olhos agucados
-50,Unicornio,1612,144,S,O cavalo mitico com chifre
+28,Auriga,150,42.9,N,O cocheiro
+29,Hercules,150,139.4,N,O grande heroi grego
+30,Perseu,150,592.1,N,O heroi que matou a Medusa
+31,Baleia,150,96.3,S,O monstro marinho Cetus
+32,Eridano,150,139.5,S,O rio mitico
+33,Hidra,150,177.3,S,A serpente de muitas cabecas
+34,Corvo,150,164.8,S,O passaro de Apolo
+35,Taca,150,159.4,S,O calice de Apolo
+36,Dragao,150,154.3,N,O dragao Ladao
+37,Cefeu,150,49.1,N,O rei da Etiopia
+38,Coroa Boreal,150,75.3,N,A coroa de Ariadne
+39,Coroa Austral,150,125.1,S,A coroa do sul
+40,Lobo,150,464.6,S,O lobo sacrificado
+41,Altar,150,713.2,S,O altar dos deuses
+42,Pavao,1597,183.2,S,O passaro sagrado de Hera
+43,Grou,1597,101.4,S,A ave grou
+44,Tucano,1597,199.5,S,A ave tropical
+45,Indio,1597,98.3,S,O nativo americano
+46,Camaleao,1597,63.5,S,O lagarto que muda de cor
+47,Peixe Voador,1597,107.8,S,O peixe voador
+48,Pomba,1592,268.4,S,A pomba de Noe
+49,Lince,1687,222.1,N,O felino de olhos agucados
+50,Unicornio,1612,144.3,S,O cavalo mitico com chifre
+51,Ofiuco,150,48.6,S,O portador da serpente
+52,Serpente,150,74.3,N,A serpente de Ofiuco
+53,Vela,1763,815.4,S,A vela do navio Argos
+54,Popa,1763,1085.6,S,A popa do navio Argos
+55,Quilha,1763,312.7,S,A quilha do navio Argos
+56,Bussola,1763,845.2,S,A bussola dos marinheiros
+57,Maquina Pneumatica,1763,365.4,S,A bomba de ar
+58,Buril,1752,65.7,S,A ferramenta do escultor
+59,Dourado,1597,169.2,S,O peixe dourado
+60,Fornalha,1756,46.4,S,A fornalha quimica
+61,Relogio,1756,117.3,S,O relogio de pendulo
+62,Montanha da Mesa,1756,33.1,S,A montanha na Africa
+63,Oitante,1756,69.1,S,O instrumento de navegacao
+64,Pintor,1756,97.4,S,O cavalete do pintor
+65,Reticulo,1621,53.2,S,A mira do telescopio
+66,Escultor,1756,780.6,S,O estudio do escultor
+67,Ave do Paraiso,1597,430.3,S,A ave exotica
+68,Compasso,1756,53.5,S,O compasso do desenhista
+69,Mosca,1597,315.4,S,O inseto
+70,Esquadro,1756,127.8,S,O esquadro do carpinteiro
+71,Telescopio,1756,278.4,S,O telescopio astronomico
+72,Triangulo Austral,1589,391.4,S,O triangulo do sul
+73,Microscopio,1756,38.6,S,O microscopio cientifico
+74,Escudo,1684,199.1,S,O escudo do rei
+75,Flecha,150,347.4,N,A flecha de Hercules
+76,Raposa,1687,296.5,N,A raposinha com o ganso
+77,Delfim,150,44.1,N,O golfinho mensageiro
+78,Potro,150,186.4,N,O cavalo jovem
+79,Lagarto,1687,102.2,N,O pequeno lagarto
+80,Triangulo,150,63.3,N,A figura geometrica
+81,Cabeleira de Berenice,1536,58.4,N,O cabelo da rainha
+82,Caes de Caca,1687,114.2,N,Os caes do pastor
+83,Leao Menor,1687,98.1,N,O pequeno leao
+84,Sextante,1687,258.5,S,O instrumento astronomico
+85,Peixe Austral,150,25.1,S,O grande peixe do sul
+86,Lebre,150,128.3,S,A presa de Orion
+87,Girafa,1612,997.4,N,A girafa do norte
+88,Hidra Macho,1597,24.3,S,A cobra d agua do sul
