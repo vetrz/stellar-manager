@@ -19,7 +19,8 @@ namespace stellar
     Element DesignInterface(
         int active_screen,
         int current_page,
-        Component& menu, 
+        Component& menu,
+        Component& exit_menu,
         Component& filter,
         std::vector<Component>& inputs,
         std::vector<Component>& inputs_filter,

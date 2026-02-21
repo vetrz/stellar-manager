@@ -55,7 +55,8 @@ namespace stellar
     Element DesignInterface(
         int active_screen,
         int current_page, 
-        Component& menu, 
+        Component& menu,
+        Component& exit_menu, 
         Component& filter_radio, 
         std::vector<Component>& inputs,
         std::vector<Component>& inputs_filter,
@@ -93,7 +94,7 @@ namespace stellar
                     hbox(text(" Distancia da Terra:  "), inputs[2]->Render()),
                     hbox(text(" hemisferio:  "), inputs[3]->Render()),
                     hbox(text(" Significado:  "), inputs[4]->Render()),
-                    text("(Pressione ENTER para salvar)") | dim
+                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | dim
                 });
                 break;
             }
@@ -140,7 +141,7 @@ namespace stellar
                     hbox(text(" Distancia da Terra:  "), inputs[2]->Render()),
                     hbox(text(" hemisferio:  "), inputs[3]->Render()),
                     hbox(text(" Significado:  "), inputs[4]->Render()),
-                    text("(Pressione ENTER para salvar)") | dim
+                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | dim
                 });
                 break;
             }
@@ -149,13 +150,18 @@ namespace stellar
                     text(" Remover constelação ") | bold | color(Color::Red),
                     separator(),
                     hbox(text(" Id Para Remover: "), inputs[6]->Render()),
-                    text("(Pressione ENTER para salvar)") | dim
+                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | dim
                 });
                 break;
             }
             case 5: {
-                screen.ExitLoopClosure()();
-                dynamic_content = text("Saindo...");
+                dynamic_content = vbox({
+                    text( "Configuraçẽos de Saída ") | bold | color(Color::Yellow),
+                    separator(),
+                    exit_menu->Render() | color(Color::Cyan),
+                    separator(),
+                    text(" [<-] | [->] Navegar | [Enter] Confirmar | [ESC] Voltar") | dim | border
+                });
                 break;
             }
             default:

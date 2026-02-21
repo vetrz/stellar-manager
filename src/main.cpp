@@ -17,16 +17,16 @@ int main()
     int active_screen = 0;
     int current_page = 0;
 
-    std::vector<std::string> options_menu = {
+    std::vector<std::string> menu_options = {
         "Listar Tudo",
         "Adicionar Nova",
         "Buscar ou Filtrar",
         "Editar Selecionada",
         "Excluir",
-        "Sair"
+        "Sair ou Salvar"
     };
 
-    auto menu = ftxui::Menu(&options_menu, &active_screen);
+    auto menu = ftxui::Menu(&menu_options, &active_screen);
 
     std::string new_name, new_year, new_distance, new_hemisphere, new_meaning, id_to_modify, id_to_remove;
     std::vector<ftxui::Component> inputs = {
@@ -39,8 +39,18 @@ int main()
         (ftxui::Input(&id_to_remove, "Digite o id para excluir"))
     };
 
+    int selected_exit = 0;
+
+    std::vector<std::string> exit_options = {
+        "Salvar e Continuar",
+        "Sair e Salvar",
+        "Sair sem Salvar",
+    };
+
+    auto exit_menu = ftxui::Menu(&exit_options, &selected_exit);
+
     stellar::Vetor filtered_constellation = df;
-    int selected_filter = 0; 
+    int selected_filter = 0;
 
     std::vector<std::string> filter_options = {
         "Todos", 
@@ -68,22 +78,36 @@ int main()
         inputs_filter[0],inputs_filter[1],inputs_filter[2],inputs_filter[3],inputs_filter[4]
     });
 
+    int target;
+
     auto interactive_component = ftxui::CatchEvent(main_container, [&](ftxui::Event event) -> bool{
+        if (event == ftxui::Event::Escape){
+            if (active_screen != 0){
+                active_screen = 0; current_page = 0; return true;
+            }
+        }
+
         if (active_screen == 0) {
             int total_pages = (filtered_constellation.size() + 14) / 15;
 
             if (event == ftxui::Event::ArrowRight) {
-                if (current_page < total_pages - 1) current_page++;
-                return true;
+                if (current_page < total_pages - 1) current_page++; return true;
             }
             if (event == ftxui::Event::ArrowLeft) {
-                if (current_page > 0) current_page--;
-                return true;
+                if (current_page > 0) current_page--; return true;
+            }
+        }
+        if (active_screen == 5){
+            if (event == ftxui::Event::ArrowUp || event == ftxui::Event::ArrowDown){
+                return exit_menu->OnEvent(event);
             }
         }
 
         if (event == ftxui::Event::Return){
             if (active_screen == 1) {
+                if (new_year.empty()) return true;
+                if (new_distance.empty()) return true;
+
                 stellar::Constellation c = stellar::addConstellation(
                     df[df.size()-1].id + 1,
                     new_name,
@@ -101,7 +125,11 @@ int main()
                 return true;
             }
             if (active_screen == 3){
-                int target = std::stoi(id_to_modify) - 1;
+                if (id_to_modify.empty()) return true;
+                if (new_year.empty()) return true;
+                if (new_distance.empty()) return true;
+
+                target = std::stoi(id_to_modify) - 1;
 
                 df[target].nome = new_name;
                 df[target].anoDescobrimento = std::stoi(new_year);
@@ -115,7 +143,9 @@ int main()
                 return true;
             }
             if (active_screen == 4){
-                int target = std::stoi(id_to_remove) - 1;
+                if (id_to_remove.empty()) return true;
+
+                target = std::stoi(id_to_remove) - 1;
 
                 df.remove(target);
                 
@@ -123,6 +153,17 @@ int main()
                 active_screen = 0;
 
                 return true;
+            }
+            if (active_screen == 5){
+                if (selected_exit == 0){
+                    stellar::saveToFile(df, DATA_PATH); active_screen = 0;
+                }
+                else if (selected_exit == 1){
+                    stellar::saveToFile(df, DATA_PATH); screen.ExitLoopClosure()(); 
+                }
+                else if (selected_exit == 2){ 
+                    screen.ExitLoopClosure()(); 
+                }
             }
         }
         return false;
@@ -163,6 +204,7 @@ int main()
             active_screen, 
             current_page,
             menu,
+            exit_menu,
             filter,
             inputs,
             inputs_filter,
