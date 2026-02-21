@@ -8,10 +8,11 @@
 #include "core/vetor.hpp"
 #include "ui/interface.hpp"
 
-using namespace ftxui;
 
 namespace stellar
 {
+    using namespace ftxui;
+
     Element _RenderTable(Vetor& vetor, int current_page)
     {
         std::vector<Element> rows;
@@ -50,13 +51,18 @@ namespace stellar
         return vbox(std::move(rows));
     }
 
+
     Element DesignInterface(
         int active_screen,
         int current_page, 
         Component& menu, 
-        std::vector<ftxui::Component>& inputs,
+        Component& filter_radio, 
+        std::vector<Component>& inputs,
+        std::vector<Component>& inputs_filter,
+        Vetor& filtered_constellation,
         Vetor& df, 
-        ScreenInteractive& screen) 
+        ScreenInteractive& screen,
+        int selected_filter)  
     {
         
         Element dynamic_content;
@@ -72,7 +78,7 @@ namespace stellar
                     text("  .  * .      .  * .      .  * .  ") | color(Color::Yellow) | hcenter,
                     text("Página " + std::to_string(current_page + 1) + " de " + std::to_string(total_pages)) | hcenter | dim | color(Color::LightGoldenrod1),
                     separator(),
-                    _RenderTable(df, current_page) | flex,
+                    _RenderTable(filtered_constellation, current_page) | flex,
                     separator(),
                     text(" <- Página Anterior | Próxima Página -> ") | hcenter,
                     separator()
@@ -93,6 +99,38 @@ namespace stellar
                 break;
             }
             case 2: {
+                Element dynamic_field = emptyElement();
+
+                if (selected_filter == 1) {
+                    dynamic_field = window(text("Digite o Hemisfério: "), inputs_filter[1]->Render());
+                } 
+                else if (selected_filter == 2) {
+                    dynamic_field = window(text("Digite o ID exato: "), inputs_filter[2]->Render());
+                } 
+                else if (selected_filter == 3) {
+                    dynamic_field = window(text("Digite o Nome: "), inputs_filter[0]->Render());
+                } 
+                else if (selected_filter == 4) {
+                    dynamic_field = hbox({
+                        window(text("Digite o ID inicial: "), inputs_filter[3]->Render()) | flex,
+                        window(text("Digite o ID final: "),   inputs_filter[4]->Render()) | flex,
+                    });
+                }
+
+                dynamic_content = vbox({
+                    text(" Configurações de Filtro ") | bold | color(Color::Yellow),
+                    separator(),
+                    text("Selecione o método de filtragem:"),
+                    separator(),
+                    filter_radio->Render() | border,
+                    separator(),
+                    dynamic_field, 
+                    separator(),
+                    text("A escolha será aplicada na aba 'Listar Tudo'") | dim
+                });
+                break;
+            }
+            case 3: {
                 dynamic_content = vbox({
                     text(" Editar uma Constelação ") | bold | color(Color::BlueLight),
                     separator(),
@@ -107,7 +145,7 @@ namespace stellar
                 });
                 break;
             }
-            case 3:{
+            case 4:{
                 dynamic_content = vbox({
                     text(" Remover constelação ") | bold | color(Color::Red),
                     separator(),
@@ -116,7 +154,7 @@ namespace stellar
                 });
                 break;
             }
-            case 4: {
+            case 5: {
                 screen.ExitLoopClosure()();
                 dynamic_content = text("Saindo...");
                 break;

@@ -5,16 +5,15 @@
 
 namespace stellar 
 {
-    bool isNorth(Constellation constellation);
 
-    bool isWest(Constellation constellation);
+    bool byHemisferio(Constellation constellation, char hemisphere);
 
-    bool isEast(Constellation constellation);
+    bool byInterval(Constellation constellation, int start, int end);
 
-    bool isSouth(Constellation constellation);
+    bool byName(Constellation constellation, std::string name);
+
+    bool byId(Constellation constellation, int Id); 
 
 }
-
-
 
 #endif // CONSTELLATIONFILTERS_HPP

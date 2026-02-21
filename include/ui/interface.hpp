@@ -20,9 +20,13 @@ namespace stellar
         int active_screen,
         int current_page,
         Component& menu, 
+        Component& filter,
         std::vector<ftxui::Component>& inputs,
+        std::vector<ftxui::Component>& inputs_filter,
+        stellar::Vetor& filtered_constellation,
         Vetor& df, 
-        ScreenInteractive& screen);
+        ScreenInteractive& screen,
+        int selected_filter);
 }
 
 #endif // INTERFACE_HPP
