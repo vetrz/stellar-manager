@@ -131,7 +131,7 @@ int main()
 
                 target = std::stoi(id_to_modify) - 1;
 
-                if (target >= 0 && target < df.size()) return true;
+                if (target < 0 || target >= df.size()) return true;
 
                 df[target].nome = new_name;
                 df[target].anoDescobrimento = std::stoi(new_year);
@@ -149,7 +149,7 @@ int main()
 
                 target = std::stoi(id_to_remove) - 1;
 
-                if (target >= 0 && target < df.size()) return true;
+                if (target < 0 || target >= df.size()) return true;
 
                 df.remove(target);
                 
