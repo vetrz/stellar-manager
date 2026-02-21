@@ -80,7 +80,7 @@ namespace stellar
                     separator(),
                     _RenderTable(filtered_constellation, current_page) | flex,
                     separator(),
-                    text(" <- Página Anterior | Próxima Página -> ") | hcenter,
+                    text(" [<-] Página Anterior | Próxima Página [->] ") | hcenter,
                     separator()
                 });
                 break;
@@ -94,7 +94,8 @@ namespace stellar
                     hbox(text(" Distancia da Terra:  "), inputs[2]->Render()),
                     hbox(text(" hemisferio:  "), inputs[3]->Render()),
                     hbox(text(" Significado:  "), inputs[4]->Render()),
-                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | dim
+                    separator(),
+                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | border
                 });
                 break;
             }
@@ -122,11 +123,13 @@ namespace stellar
                     separator(),
                     text(" Selecione o método de filtragem:"),
                     separator(),
-                    filter_radio->Render() | border,
+                    filter_radio->Render() | borderDouble,
                     separator(),
                     dynamic_field, 
                     separator(),
-                    text("A escolha será aplicada na aba 'Listar Tudo'") | dim
+                    text(" A escolha será aplicada na aba 'Listar Tudo' ") | dim,
+                    separator(),
+                    text(" [ESC] para Voltar ") | border
                 });
                 break;
             }
@@ -141,7 +144,8 @@ namespace stellar
                     hbox(text(" Distancia da Terra:  "), inputs[2]->Render()),
                     hbox(text(" hemisferio:  "), inputs[3]->Render()),
                     hbox(text(" Significado:  "), inputs[4]->Render()),
-                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | dim
+                    separator(),
+                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | border
                 });
                 break;
             }
@@ -150,17 +154,18 @@ namespace stellar
                     text(" Remover constelação ") | bold | color(Color::Red),
                     separator(),
                     hbox(text(" Id Para Remover: "), inputs[6]->Render()),
-                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | dim
+                    separator(),
+                    text(" Pressione [Enter] para salvar | [ESC] para Voltar ") | border
                 });
                 break;
             }
             case 5: {
                 dynamic_content = vbox({
-                    text( "Configuraçẽos de Saída ") | bold | color(Color::Yellow),
+                    text( "Configurações de Saída ") | bold | color(Color::Yellow),
                     separator(),
-                    exit_menu->Render() | color(Color::Cyan),
+                    exit_menu->Render() | color(Color::Cyan) | borderDouble,
                     separator(),
-                    text(" [<-] | [->] Navegar | [Enter] Confirmar | [ESC] Voltar") | dim | border
+                    text(" [<-] [->] Navegar | [Enter] Confirmar | [ESC] Voltar") | border
                 });
                 break;
             }
