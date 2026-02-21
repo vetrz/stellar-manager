@@ -23,6 +23,8 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(stellar ${SOURCES})
 
+add_definitions(-DDATA_PATH="${CMAKE_SOURCE_DIR}/data/constellation.csv")
+
 target_include_directories(stellar
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
